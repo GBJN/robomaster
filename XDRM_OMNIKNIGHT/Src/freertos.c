@@ -54,6 +54,8 @@
 #include "main.h"
 #include "cmsis_os.h"
 #include "CanBusTask.h"
+#include "ControlTask.h"
+
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */     
 
@@ -72,6 +74,21 @@
 /* Private macro -------------------------------------------------------------*/
 /* USER CODE BEGIN PM */
 
+/*
+UBaseType_t uxTaskGetSystemState()*获取任务状态，调用此函数会挂起其他任务，结束才恢复其他任务，调试时可用。相关宏configUSE_TRACE_FACILITY
+TaskHandle_t xTaskGetCurrentTaskHandle(void );获取任务句柄，相关宏INCLUDE_xTaskGetCurrentTaskHandle
+UBaseType_t uxTaskGetStackHighWaterMark( TaskHandle_t xTask );返回任务最小剩余堆栈空间，以字为单位，相关宏INCLUDE_uxTaskGetStackHighWaterMark
+eTaskState eTaskGetState( TaskHandle_txTask );获取任务状态，INCLUDE_eTaskGetState
+volatile TickType_t xTaskGetTickCount(void );获取系统节拍次数，返回从vTaskStartScheduler函数调用后的系统时钟节拍次数。ISR中用xTaskGetTickCountFromISR()
+BaseType_t xTaskGetSchedulerState( void);获取调度器当前状态。在文件FreeRTOSConfig.h中，宏INCLUDE_xTaskGetSchedulerState
+void vTaskList( char *pcWriteBuffer );*会调用usTaskGetSystemState()函数，调试时用，将每个任务的状态、堆栈使用情况等以字符的形式保存到参数pcWriteBuffer指向的区域。
+void vTaskGetRunTimeStats( char*pcWriteBuffer );*调试时用，这个函数用于统计每个任务的运行时间。必须有一个用于时间统计的定时器或计数器，这个定时器或计数器的精度要至少大于10倍的系统节拍周期
+相关宏portCONFIGURE_TIMER_FOR_RUN_TIME_STATS()portGET_RUN_TIME_COUNTER_VALUE
+BaseType_txTaskCallApplicationTaskHook();执行任务的应用钩子函数
+*/
+
+
+
 /* USER CODE END PM */
 
 /* Private variables ---------------------------------------------------------*/
@@ -80,10 +97,13 @@
 /* USER CODE END Variables */
 osThreadId Led_ToggleHandle;
 osThreadId Can_SendHandle;
+osThreadId Task_ControlHandle;
+osMessageQId myQueue01Handle;
+osMutexId myMutex01Handle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
-   
+
 /* USER CODE END FunctionPrototypes */
 
 void Led_Toggle_Task(void const * argument);
@@ -98,7 +118,9 @@ void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
   */
 void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
-       
+  osMutexDef(myMutex01);
+  myMutex01Handle = osMutexCreate(osMutex(myMutex01));
+
   /* USER CODE END Init */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -115,18 +137,25 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of Led_Toggle */
-  osThreadDef(Led_Toggle, Led_Toggle_Task, osPriorityNormal, 0, 128);
+  osThreadDef(Led_Toggle, Led_Toggle_Task, osPriorityLow, 0, 128);
   Led_ToggleHandle = osThreadCreate(osThread(Led_Toggle), NULL);
 
   /* definition and creation of Can_Send */
-  osThreadDef(Can_Send, Can_Send_Task, osPriorityIdle, 0, 256);
+  osThreadDef(Can_Send, Can_Send_Task, osPriorityRealtime, 0, 256);
   Can_SendHandle = osThreadCreate(osThread(Can_Send), NULL);
+
+  osThreadDef(Drivers_Control, Drivers_Control_Task, osPriorityRealtime, 0, 256);
+  Task_ControlHandle = osThreadCreate(osThread(Drivers_Control), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 
   /* USER CODE BEGIN RTOS_QUEUES */
+	
+	osMessageQDef(myQueue01, 16, uint16_t);
+	myQueue01Handle = osMessageCreate(osMessageQ(myQueue01), NULL);
+
   /* add queues, ... */
   /* USER CODE END RTOS_QUEUES */
 }

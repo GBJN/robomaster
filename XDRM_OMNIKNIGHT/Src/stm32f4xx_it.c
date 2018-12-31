@@ -38,11 +38,19 @@
 
 /* USER CODE BEGIN 0 */
 
+#include "usart.h"
+#include "BSP_Data.h"
+#include "CanBusTask.h"
+#include "Driver_Remote.h"
+
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
 extern DMA_HandleTypeDef hdma_usart2_rx;
 extern UART_HandleTypeDef huart2;
+
+extern DMA_HandleTypeDef hdma_usart1_rx;
+extern UART_HandleTypeDef huart1;
 
 extern TIM_HandleTypeDef htim2;
 
@@ -183,6 +191,19 @@ void DMA1_Stream5_IRQHandler(void)
   /* USER CODE END DMA1_Stream5_IRQn 1 */
 }
 
+
+
+void DMA2_Stream2_IRQHandler(void)
+{
+  /* USER CODE BEGIN DMA2_Stream2_IRQn 0 */
+
+  /* USER CODE END DMA2_Stream2_IRQn 0 */
+  HAL_DMA_IRQHandler(&hdma_usart1_rx);
+  /* USER CODE BEGIN DMA2_Stream2_IRQn 1 */
+
+  /* USER CODE END DMA2_Stream2_IRQn 1 */
+}
+
 /**
 * @brief This function handles TIM2 global interrupt.
 */
@@ -210,11 +231,7 @@ void TIM2_IRQHandler(void)
 
 
 
-#include "can.h"
 
-#include "usart.h"
-#include "BSP_Data.h"
-#include "CanBusTask.h"
 CIRCLE_BUFF_t Que_Protocol = {0, 0, {0}};	//数据缓冲队列
 
 int aaaa = 0;
@@ -222,6 +239,23 @@ int aaaa = 0;
 
 
 
+void USART1_IRQHandler(void)
+{
+	if(__HAL_UART_GET_FLAG(&huart1,UART_FLAG_IDLE)!= RESET)
+	{	
+
+		HAL_UART_AbortReceive(&huart1);//关闭dma
+		__HAL_UART_CLEAR_IDLEFLAG(&huart1);
+		uint16_t RX1_Length = UART1_RXBUFF_SIZE - __HAL_DMA_GET_COUNTER(&hdma_usart1_rx);////计算数据长度
+//		DBUSFrameCounter++;
+		if(RX1_Length == 18u)
+		{
+			RemoteDataProcess(UART1_RXBUFF);
+		}
+		HAL_UART_Receive_DMA(&huart1,UART1_RXBUFF,UART1_RXBUFF_SIZE);//重启DMA
+	}
+		
+}
 
 
 void USART2_IRQHandler(void)
@@ -280,41 +314,6 @@ void CAN1_RX0_IRQHandler(void)
 
 
 
-
-
-/**
-  * @brief CAN data sent in PMP interrupt.
-  *
-  * @retval None
-  */
-
-
-uint32_t send_rate;
-void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef* hcan)
-{
-	uint16_t testlen = CAN_bufferlen(&Que_CAN1_Tx);
-		if(testlen>0)//如果都在一个线程里发的话等发的数据多了就会不够用了
-	{
-		CAN_bufferPop(&Que_CAN1_Tx,&CAN1_ReallySend);
-		HAL_CAN_AddTxMessage(&hcan1,&CAN1_ReallySend.tx_header,CAN1_ReallySend.msg.data,(uint32_t*)CAN_TX_MAILBOX0);
-		
-	}
-}
-
-/**
-  * @brief 
-  *
-  * @retval None
-  */
-void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
-{
-HAL_CAN_GetRxMessage(&hcan1,CAN_RX_FIFO0,&CAN1_Receive.rx_header,CAN1_Receive.msg.data);//
-	
-		
-	Can_Msg_Process();	
-
-													
-}
 
 
 

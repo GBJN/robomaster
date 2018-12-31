@@ -6,31 +6,13 @@
 #include "BSP_Data.h"
 
 
-
-
-
-
-
-
-
-
-
 Measure Motor1_Measure = {0,0,0,0};
 Measure Motor2_Measure = {0,0,0,0};
 Measure Motor3_Measure = {0,0,0,0};
 Measure Motor4_Measure = {0,0,0,0};
 
-Measure Turntable_Measure = {0,0,0,0};
-
-
-Encoder CM1Encoder = {0, 0, 0, 0, 0, 0, 0, 0, 0};
-Encoder CM2Encoder = {0, 0, 0, 0, 0, 0, 0, 0, 0};
-Encoder CM3Encoder = {0, 0, 0, 0, 0, 0, 0, 0, 0};
-Encoder CM4Encoder = {0, 0, 0, 0, 0, 0, 0, 0, 0};
-Encoder GMYawEncoder = {0, 0, 0, 0, 0, 0, 0, 0, 0};
-Encoder GMPitchEncoder = {0, 0, 0, 0, 0, 0, 0, 0, 0};
-Encoder TurntableEncoder = {0, 0, 0, 0, 0, 0, 0, 0, 0};
-
+Measure BeltM1_Measure = {0,0,0,0};
+Measure BeltM2_Measure = {0,0,0,0};
 
 /**
   * @brief  处理编码值,将其转换为连续的角度							//[0][1]机械角度
@@ -43,54 +25,6 @@ void get_measure(Measure *mea, Can_Msg *msg)//查看C620说明书
 	mea->speed_rpm = (int16_t)(msg->data[2] << 8 | msg->data[3]);
 	mea->real_current = (int16_t)((msg->data[4] << 8) | (msg->data[5]));
 	mea->Temperature = msg->data[6];
-}
-
-
-
-void GetEncoderBias(Encoder *v,Can_Msg *msg)
-{
-	v->ecd_bias = (msg->data[0]<<8)|(msg->data[1]);
-	v->ecd_value = v->ecd_bias;
-	v->last_raw_value = v->ecd_bias;
-	v->temp_count++;
-}
-
-
-
-void EncoderProcess(Encoder *v,Can_Msg *msg)//yaw轴转，pitch的pid也会变，ecd-angle的问题
-{
-	int i = 0;
-	int32_t temp_sum = 0;
-	v->last_raw_value = v->raw_value;
-	v->raw_value = (msg->data[0]<<8)|(msg->data[1]);
-	v->diff =  v->raw_value-v->last_raw_value;
-	if(v->diff < -6400)
-	{
-		v->round_cnt++;
-		v->ecd_raw_rate = v->diff + 8192;
-	}
-	else if(v->diff > 6400)
-	{
-		v->round_cnt--;//这里写成了++然后yaw和pitch有问题，ecd_angle只要你快一点来回转yaw和pitch，就会叠加，然后变得很大。
-		v->ecd_raw_rate = v->diff - 8192;
-	}
-	else
-	{
-	  v->ecd_raw_rate = v->diff;
-	}
-	v->ecd_value = v->raw_value+ v->round_cnt * 8192;
-	v->ecd_angle = (float)(v->raw_value-v->ecd_bias) * 360.0f/8192 + v->round_cnt * 360;
-	v->rate_buf[v->buf_count++] = v->ecd_raw_rate;
-	if(v->buf_count == RATE_BUF_SIZE)
-	{
-		v->buf_count = 0;
-	}
-	for (i = 0; i < RATE_BUF_SIZE; i++)//我觉得这里有问题，6次0一次速率。									
-	{																	 //没问题的，他只是回到数组头而已，其实就是滑动滤波
-		temp_sum += v->rate_buf[i];
-	}
-	v->filter_rate = (int32_t)(temp_sum / RATE_BUF_SIZE);
-
 }
 
 
@@ -118,31 +52,6 @@ void EncoderProcess(Encoder *v,Can_Msg *msg)//yaw轴转，pitch的pid也会变，ecd-ang
 
 
 uint32_t can_count;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 void Can_Msg_Process(void)
@@ -178,51 +87,20 @@ void Can_Msg_Process(void)
 				get_measure(&Motor4_Measure, &CAN1_Receive.msg);
 			}
 			break;
-			case CAN_BUS2_GMYAW_FEEDBACK_MSG_ID:
+		case CAN_BUS2_BELTMOTOR1_FEEDBACK_MSG_ID:
 			{
-	//			YawFrameCounter++;
-				static uint32_t yaw_count = 0;
-				EncoderProcess(&GMYawEncoder, &CAN1_Receive.msg);
-				// 比较保存编码器的值和偏差值，如果编码器的值和初始偏差之间差距超过阈值，将偏差值做处理，防止出现云台反方向运动
-				if (yaw_count++<=100 || can_count < 100) //准备阶段要求二者之间的差值一定不能大于阈值，否则肯定是出现了临界切换
-				{
-					if ((GMYawEncoder.ecd_bias - GMYawEncoder.ecd_value) < -4000)
-					{
-	//					GMYawEncoder.ecd_bias = gAppParamStruct.GimbalCaliData.GimbalYawOffset + 8192;
-					}
-					else if ((GMYawEncoder.ecd_bias - GMYawEncoder.ecd_value) > 4000)
-					{
-//						GMYawEncoder.ecd_bias = gAppParamStruct.GimbalCaliData.GimbalYawOffset - 8192;
-					}
-				}
-			}
-			break;
-			case CAN_BUS2_GMPITCH_FEEDBACK_MSG_ID:
+	//			BeltFrameCounter[0]++;
+
+				get_measure(&BeltM1_Measure, &CAN1_Receive.msg);
+
+			}break;
+					case CAN_BUS2_BELTMOTOR2_FEEDBACK_MSG_ID:
 			{
-				static  uint32_t pitch_count = 0;
-//				PitchFrameCounter++;
-				EncoderProcess(&GMPitchEncoder, &CAN1_Receive.msg);
-				//码盘中间值设定也需要修改
-				if (pitch_count++ <= 100 || can_count < 100)
-				{
-					if ((GMPitchEncoder.ecd_bias - GMPitchEncoder.ecd_value) < -4000)
-					{
-//					GMPitchEncoder.ecd_bias = gAppParamStruct.GimbalCaliData.GimbalPitchOffset + 8192;
-					}
-					else if ((GMPitchEncoder.ecd_bias - GMPitchEncoder.ecd_value) > 4000)
-					{
-//						GMPitchEncoder.ecd_bias = gAppParamStruct.GimbalCaliData.GimbalPitchOffset - 8192;
-					}
-				}
-			}
-			break;
-			case CAN_BUS2_TURNTABLE_FEEDBACK_MSG_ID:
-			{
-				get_measure(&Turntable_Measure, &CAN1_Receive.msg);
-				EncoderProcess(&TurntableEncoder, &CAN1_Receive.msg);
-		//		TurntableFrameCounter++;
-			}
-			break;
+	//			BeltFrameCounter[1]++;
+
+				get_measure(&BeltM2_Measure, &CAN1_Receive.msg);
+
+			}break;
 			default:
 			{
 	
@@ -231,47 +109,10 @@ void Can_Msg_Process(void)
 		}
 }
 
-//void Can_Send_Other(int16_t iq_1,int16_t iq_2,int16_t iq_3,int16_t iq_4)
-//{
-//	CAN1_ReadyToSend.tx_header.StdId = 0x198;
-//	CAN1_ReadyToSend.msg.data[0] = (unsigned char)( iq_1 >>8);
-//	CAN1_ReadyToSend.msg.data[1] = (unsigned char)iq_1;
-//	CAN1_ReadyToSend.msg.data[2] = (unsigned char)( iq_2 >>8);
-//	CAN1_ReadyToSend.msg.data[3] = (unsigned char)iq_2;
-//	CAN1_ReadyToSend.msg.data[4] = (unsigned char)( iq_3 >>8);
-//	CAN1_ReadyToSend.msg.data[5] = (unsigned char)iq_3;
-//	CAN1_ReadyToSend.msg.data[6] = (unsigned char)( iq_4 >>8);
-//	CAN1_ReadyToSend.msg.data[7] = (unsigned char)iq_4;
-//	
-//	CAN_bufferPush(&Que_CAN1_Tx,CAN1_ReadyToSend);
 
-//}
-
-
-//void Can_Send_CM(int16_t iq_1,int16_t iq_2,int16_t iq_3,int16_t iq_4)
-//{
-//	CAN1_ReadyToSend.tx_header.StdId = 0x200;
-//	CAN1_ReadyToSend.msg.data[0] = (unsigned char)( iq_1 >>8);
-//	CAN1_ReadyToSend.msg.data[1] = (unsigned char)iq_1;
-//	CAN1_ReadyToSend.msg.data[2] = (unsigned char)( iq_2 >>8);
-//	CAN1_ReadyToSend.msg.data[3] = (unsigned char)iq_2;
-//	CAN1_ReadyToSend.msg.data[4] = (unsigned char)( iq_3 >>8);
-//	CAN1_ReadyToSend.msg.data[5] = (unsigned char)iq_3;
-//	CAN1_ReadyToSend.msg.data[6] = (unsigned char)( iq_4 >>8);
-//	CAN1_ReadyToSend.msg.data[7] = (unsigned char)iq_4;
-//	
-//	CAN_bufferPush(&Que_CAN1_Tx,CAN1_ReadyToSend);
-//	
-//}
-
-
-
-//GM3510 电压范围-29000 - 29000
-//0x7148  111000101001000
-//怎么传负值？ 补码
-void Can_Send_GM(int16_t iq_1,int16_t iq_2,int16_t iq_3,int16_t iq_4)
+void Can_Send_CM(int16_t iq_1,int16_t iq_2,int16_t iq_3,int16_t iq_4)
 {
-	CAN1_ReadyToSend.tx_header.StdId = 0x1FF;//这个变量以后再说小问题
+	CAN1_ReadyToSend.tx_header.StdId = 0x200;
 	CAN1_ReadyToSend.msg.data[0] = (unsigned char)( iq_1 >>8);
 	CAN1_ReadyToSend.msg.data[1] = (unsigned char)iq_1;
 	CAN1_ReadyToSend.msg.data[2] = (unsigned char)( iq_2 >>8);
@@ -285,42 +126,84 @@ void Can_Send_GM(int16_t iq_1,int16_t iq_2,int16_t iq_3,int16_t iq_4)
 	
 }
 
+void Can_Send_BM(int16_t iq_1,int16_t iq_2,int16_t iq_3,int16_t iq_4)
+{
+	CAN1_ReadyToSend.tx_header.StdId = 0x1FF;
+	CAN1_ReadyToSend.msg.data[0] = (unsigned char)( iq_1 >>8);
+	CAN1_ReadyToSend.msg.data[1] = (unsigned char)iq_1;
+	CAN1_ReadyToSend.msg.data[2] = (unsigned char)( iq_2 >>8);
+	CAN1_ReadyToSend.msg.data[3] = (unsigned char)iq_2;
+	CAN1_ReadyToSend.msg.data[4] = (unsigned char)( iq_3 >>8);
+	CAN1_ReadyToSend.msg.data[5] = (unsigned char)iq_3;
+	CAN1_ReadyToSend.msg.data[6] = (unsigned char)( iq_4 >>8);
+	CAN1_ReadyToSend.msg.data[7] = (unsigned char)iq_4;
+	
+	CAN_bufferPush(&Que_CAN1_Tx,CAN1_ReadyToSend);
+
+}
 
 uint32_t TxMailFreeNum = 0;
-uint32_t count;
-uint32_t can_send_rate;
-extern uint32_t send_rate;
+
 void Can_Send(void)
 {		
-	static int16_t q;
-	static int16_t i =2000;
-		i--;
-		q = i*1.5;
 
 
-	
-	Can_Send_GM(q,q,q,q);
-//	Can_Send_CM(0,0,0,0);
-//	Can_Send_Other(q,q,q,q);
-//	
+
+
 	uint16_t testlen = CAN_bufferlen(&Que_CAN1_Tx);
 //如果都在一个线程里发的话等发的数据多了就会不够用了
 //想不出更好方法，暂且就这样，can线程里面发一次，剩下的到中断里发
 //时间触发模式好像可以，但是没必要而且数据就少了
 		CAN_bufferPop(&Que_CAN1_Tx,&CAN1_ReallySend);
 
-			HAL_CAN_AddTxMessage(&hcan1,&CAN1_ReallySend.tx_header,CAN1_ReallySend.msg.data,(uint32_t*)CAN_TX_MAILBOX0);//若0邮箱满了，就自动加到下一个
+		HAL_CAN_AddTxMessage(&hcan1,&CAN1_ReallySend.tx_header,CAN1_ReallySend.msg.data,(uint32_t*)CAN_TX_MAILBOX0);//若0邮箱满了，就自动加到下一个
 
 
-		if(i == 1)
-		{
-			i = 2000;
-		}
+
 		
 		
 	TxMailFreeNum = HAL_CAN_GetTxMailboxesFreeLevel(&hcan1);
 
 }
+
+
+
+
+
+/**
+  * @brief CAN data sent in PMP interrupt.
+  *
+  * @retval None
+  */
+
+void HAL_CAN_TxMailbox0CompleteCallback(CAN_HandleTypeDef* hcan)
+{
+	uint16_t testlen = CAN_bufferlen(&Que_CAN1_Tx);
+		if(testlen>0)//如果都在一个线程里发的话等发的数据多了就会不够用了
+	{
+		CAN_bufferPop(&Que_CAN1_Tx,&CAN1_ReallySend);
+		HAL_CAN_AddTxMessage(&hcan1,&CAN1_ReallySend.tx_header,CAN1_ReallySend.msg.data,(uint32_t*)CAN_TX_MAILBOX0);
+		
+	}
+}
+
+
+/**
+  * @brief 
+  *
+  * @retval None
+  */
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
+{
+	HAL_CAN_GetRxMessage(&hcan1,CAN_RX_FIFO0,&CAN1_Receive.rx_header,CAN1_Receive.msg.data);//
+	
+		
+	Can_Msg_Process();	
+
+													
+}
+
+
 
 
 

@@ -335,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F427xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;   ../Drivers/STM32F4xx_HAL_Driver/Inc;   ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;   ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;   ../Drivers/CMSIS/Device/ST/STM32F4xx/Include;   ../Middlewares/Third_Party/FreeRTOS/Source/include;   ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;   ../Drivers/CMSIS/Include</IncludePath>
+              <IncludePath>../Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Drivers/CMSIS/Include;..\Src</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -420,14 +420,14 @@
               <FilePath>../Src/freertos.c</FilePath>
             </File>
             <File>
-              <FileName>i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Src/i2c.c</FilePath>
-            </File>
-            <File>
               <FileName>spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Src/spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Src/i2c.c</FilePath>
             </File>
             <File>
               <FileName>tim.c</FileName>
@@ -468,6 +468,41 @@
               <FileName>startup_stm32f427xx.s</FileName>
               <FileType>2</FileType>
               <FilePath>.\startup_stm32f427xx.s</FilePath>
+            </File>
+            <File>
+              <FileName>BeepTask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\BeepTask.c</FilePath>
+            </File>
+            <File>
+              <FileName>Driver_Chassis.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\Driver_Chassis.c</FilePath>
+            </File>
+            <File>
+              <FileName>Driver_Remote.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\Driver_Remote.c</FilePath>
+            </File>
+            <File>
+              <FileName>Ramp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\Ramp.c</FilePath>
+            </File>
+            <File>
+              <FileName>PID.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\PID.c</FilePath>
+            </File>
+            <File>
+              <FileName>Driver_Beltraise.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\Driver_Beltraise.c</FilePath>
+            </File>
+            <File>
+              <FileName>ControlTask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\ControlTask.c</FilePath>
             </File>
           </Files>
         </Group>

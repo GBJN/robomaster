@@ -233,27 +233,27 @@ extern "C" {
 #endif
 
 #ifndef configNUM_THREAD_LOCAL_STORAGE_POINTERS
-	#define configNUM_THREAD_LOCAL_STORAGE_POINTERS 0
+	#define configNUM_THREAD_LOCAL_STORAGE_POINTERS 0//设置每个任务的线程本地存储指针数组大小。
 #endif
 
 #ifndef configUSE_RECURSIVE_MUTEXES
-	#define configUSE_RECURSIVE_MUTEXES 0
+	#define configUSE_RECURSIVE_MUTEXES 0//不使用递归互斥量
 #endif
 
 #ifndef configUSE_MUTEXES
-	#define configUSE_MUTEXES 0
+	#define configUSE_MUTEXES 0//忽略互斥量
 #endif
 
 #ifndef configUSE_TIMERS
-	#define configUSE_TIMERS 0
+	#define configUSE_TIMERS 0//不使用软件定时器
 #endif
 
 #ifndef configUSE_COUNTING_SEMAPHORES
-	#define configUSE_COUNTING_SEMAPHORES 0
+	#define configUSE_COUNTING_SEMAPHORES 0//不使用计数信号量
 #endif
 
 #ifndef configUSE_ALTERNATIVE_API
-	#define configUSE_ALTERNATIVE_API 0
+	#define configUSE_ALTERNATIVE_API 0//不使用替代队列函数//已被弃用，不要使用它
 #endif
 
 #ifndef portCRITICAL_NESTING_IN_TCB
@@ -265,7 +265,7 @@ extern "C" {
 #endif
 
 #ifndef configIDLE_SHOULD_YIELD
-	#define configIDLE_SHOULD_YIELD		1
+	#define configIDLE_SHOULD_YIELD		1//共享空闲优先级的用户任务就绪时，空闲任务立刻让出CPU，用户任务运行
 #endif
 
 #if configMAX_TASK_NAME_LEN < 1
@@ -405,7 +405,7 @@ extern "C" {
 #endif
 
 #ifndef configCHECK_FOR_STACK_OVERFLOW
-	#define configCHECK_FOR_STACK_OVERFLOW 0
+	#define configCHECK_FOR_STACK_OVERFLOW 0//栈溢出的
 #endif
 
 /* The following event macros are embedded in the kernel API calls. */
@@ -659,7 +659,7 @@ extern "C" {
 #endif
 
 #ifndef configGENERATE_RUN_TIME_STATS
-	#define configGENERATE_RUN_TIME_STATS 0
+	#define configGENERATE_RUN_TIME_STATS 0//不使能运行时间统计功能//若使能，还要改另外两个宏portCONFIGURE_TIMER_FOR_RUN_TIME_STATS，portGET_RUN_TIME_COUNTER_VALUE
 #endif
 
 #if ( configGENERATE_RUN_TIME_STATS == 1 )
@@ -681,8 +681,8 @@ extern "C" {
 #endif
 
 #ifndef configUSE_MALLOC_FAILED_HOOK
-	#define configUSE_MALLOC_FAILED_HOOK 0
-#endif
+	#define configUSE_MALLOC_FAILED_HOOK 0//每当一个任务、队列、信号量被创建时，内核使用一个名为pvPortMalloc()的函数来从堆中分配内存。如果定义并正确配置malloc()失败钩子函数，则这个函数会在pvPortMalloc()函数返回NULL时被调用。只有FreeRTOS在响应内存分配请求时发现堆内存不足才会返回NULL。
+#endif																	//void vApplicationMallocFailedHook( void);
 
 #ifndef portPRIVILEGE_BIT
 	#define portPRIVILEGE_BIT ( ( UBaseType_t ) 0x00 )
@@ -705,7 +705,7 @@ extern "C" {
 #endif
 
 #ifndef configUSE_TICKLESS_IDLE
-	#define configUSE_TICKLESS_IDLE 0
+	#define configUSE_TICKLESS_IDLE 0//为0保持系统节拍（tick）中断一直运行
 #endif
 
 #ifndef configPRE_SLEEP_PROCESSING
@@ -765,7 +765,7 @@ extern "C" {
 #endif
 
 #ifndef configUSE_TASK_NOTIFICATIONS
-	#define configUSE_TASK_NOTIFICATIONS 1
+	#define configUSE_TASK_NOTIFICATIONS 1//任务通知宏，默认开启
 #endif
 
 #ifndef portTICK_TYPE_IS_ATOMIC

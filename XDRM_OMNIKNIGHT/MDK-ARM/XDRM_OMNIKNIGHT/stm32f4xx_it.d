@@ -55,11 +55,12 @@ xdrm_omniknight\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/inclu
 xdrm_omniknight\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 xdrm_omniknight\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 xdrm_omniknight\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
-xdrm_omniknight\stm32f4xx_it.o: ../Inc/can.h
+xdrm_omniknight\stm32f4xx_it.o: ../Inc/usart.h
 xdrm_omniknight\stm32f4xx_it.o: ../Inc/config.h
 xdrm_omniknight\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 xdrm_omniknight\stm32f4xx_it.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\math.h
 xdrm_omniknight\stm32f4xx_it.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\string.h
-xdrm_omniknight\stm32f4xx_it.o: ../Inc/usart.h
 xdrm_omniknight\stm32f4xx_it.o: ../Inc/BSP_Data.h
+xdrm_omniknight\stm32f4xx_it.o: ../Inc/can.h
 xdrm_omniknight\stm32f4xx_it.o: ../Inc/CanBusTask.h
+xdrm_omniknight\stm32f4xx_it.o: ../Inc/Driver_Remote.h

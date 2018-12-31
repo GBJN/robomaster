@@ -108,7 +108,6 @@ int main(void)
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
   HAL_Init();
 
-  /* USER CODE BEGIN Init */
 
   /* USER CODE END Init */
 
@@ -123,13 +122,10 @@ int main(void)
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_CAN1_Init();
-  MX_USART2_UART_Init();
-  MX_SPI4_Init();
+	MX_USART1_UART_Init();
+//  MX_SPI4_Init();
   MX_TIM3_Init();
-//  MX_I2C1_Init();
-//  MX_ADC1_Init();
-//  MX_CRC_Init();
-//  MX_DAC_Init();
+
   /* USER CODE BEGIN 2 */
 	
 
@@ -155,7 +151,12 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
+	//要写的有1、鼠标偏移2、取弹逻辑3、取弹具体实施
+	//pid优化：1.死区2.增量式3.模糊
+	//陀螺仪零飘
+	//
+		
+	//分为四种任务，分别是数据接收，数据处理，数据发送，和状态机
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
