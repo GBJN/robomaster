@@ -504,6 +504,11 @@
               <FileType>1</FileType>
               <FilePath>..\Src\ControlTask.c</FilePath>
             </File>
+            <File>
+              <FileName>StatusMachine.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\StatusMachine.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

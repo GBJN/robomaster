@@ -6,9 +6,18 @@
 
 void ControlTask(void)
 {
-	Chassis_Control();
+	static uint32_t tick = 0;
+	tick++;
+	if(tick%4==0)
+	{
+		Chassis_Control();
+	}
+	
+	
 	Belt_Control();
 }
+
+
 
 void Drivers_Control_Task(void const * argument)
 {
@@ -22,9 +31,9 @@ void Drivers_Control_Task(void const * argument)
   {
 
 			
-			ControlTask();//下面记得改5
+			ControlTask();
 			
-			vTaskDelayUntil(&xLastWakeTime,5/portTICK_RATE_MS);//此时处于阻塞态
+			vTaskDelayUntil(&xLastWakeTime,1/portTICK_RATE_MS);//此时处于阻塞态
 
 	
 

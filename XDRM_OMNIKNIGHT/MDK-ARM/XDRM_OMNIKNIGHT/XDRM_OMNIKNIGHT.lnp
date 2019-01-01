@@ -24,6 +24,7 @@
 "xdrm_omniknight\pid.o"
 "xdrm_omniknight\driver_beltraise.o"
 "xdrm_omniknight\controltask.o"
+"xdrm_omniknight\statusmachine.o"
 "xdrm_omniknight\stm32f4xx_hal_adc.o"
 "xdrm_omniknight\stm32f4xx_hal_adc_ex.o"
 "xdrm_omniknight\stm32f4xx_hal_can.o"

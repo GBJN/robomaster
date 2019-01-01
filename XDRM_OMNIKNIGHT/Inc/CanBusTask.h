@@ -24,6 +24,9 @@ typedef struct{
 	int16_t  	real_current;//实际转矩
 	uint8_t  	Temperature;
 	uint16_t 	angle;//角度
+	uint16_t  lastangle;
+	int32_t   ecd_angle;
+	int16_t   round_cnt;
 }Measure;
 
 
@@ -38,8 +41,8 @@ extern Measure Motor2_Measure;
 extern Measure Motor3_Measure;
 extern Measure Motor4_Measure;
 
-extern Measure BeltM1_Measure;
-extern Measure BeltM2_Measure;
+extern Measure LBeltM_Measure;
+extern Measure RBeltM_Measure;
 
 #endif
 

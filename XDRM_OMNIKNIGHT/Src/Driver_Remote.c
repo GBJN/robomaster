@@ -94,6 +94,7 @@ uint8_t Remote_CheckJumpKey(uint16_t Key)
 }
 
 
+uint8_t S_switch = 0;
 
 
 void RemoteDataProcess(uint8_t *pData)
@@ -125,7 +126,7 @@ void RemoteDataProcess(uint8_t *pData)
     RC_CtrlData.mouse.press_r = pData[13];
  
     RC_CtrlData.key.v = ((int16_t)pData[14]) | ((int16_t)pData[15] << 8);
-
+		S_switch = stick1_change();
 }
 
 

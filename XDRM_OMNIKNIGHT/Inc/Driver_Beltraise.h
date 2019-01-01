@@ -4,13 +4,9 @@
 
 #include "config.h"
 
-typedef struct
-{
-	int16_t BeltMotorSpeedRef[2];
-
-}BeltData;
 
 
+#define THRESHOLD   9000
 
 
 

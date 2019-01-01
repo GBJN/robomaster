@@ -6,13 +6,13 @@
 #include "BSP_Data.h"
 
 
-Measure Motor1_Measure = {0,0,0,0};
-Measure Motor2_Measure = {0,0,0,0};
-Measure Motor3_Measure = {0,0,0,0};
-Measure Motor4_Measure = {0,0,0,0};
+Measure Motor1_Measure = {0,0,0,0,0,0,0};
+Measure Motor2_Measure = {0,0,0,0,0,0,0};
+Measure Motor3_Measure = {0,0,0,0,0,0,0};
+Measure Motor4_Measure = {0,0,0,0,0,0,0};
 
-Measure BeltM1_Measure = {0,0,0,0};
-Measure BeltM2_Measure = {0,0,0,0};
+Measure LBeltM_Measure = {0,0,0,0,0,0,0};
+Measure RBeltM_Measure = {0,0,0,0,0,0,0};
 
 /**
   * @brief  处理编码值,将其转换为连续的角度							//[0][1]机械角度
@@ -21,10 +21,24 @@ Measure BeltM2_Measure = {0,0,0,0};
   */
 void get_measure(Measure *mea, Can_Msg *msg)//查看C620说明书
 {
+	
+	
 	mea->angle = (uint16_t)(msg->data[0] << 8 | msg->data[1]);
 	mea->speed_rpm = (int16_t)(msg->data[2] << 8 | msg->data[3]);
 	mea->real_current = (int16_t)((msg->data[4] << 8) | (msg->data[5]));
 	mea->Temperature = msg->data[6];
+	
+	if((mea->angle - mea->lastangle) < -6400)
+	{
+		mea->round_cnt--;
+	}
+	else if((mea->angle - mea->lastangle) > 6400)
+	{
+		mea->round_cnt++;
+	}
+	mea->ecd_angle = mea->round_cnt *360 + (float)(mea->angle)/8192;
+	
+	mea->lastangle = mea->angle;
 }
 
 
@@ -91,14 +105,14 @@ void Can_Msg_Process(void)
 			{
 	//			BeltFrameCounter[0]++;
 
-				get_measure(&BeltM1_Measure, &CAN1_Receive.msg);
+				get_measure(&RBeltM_Measure, &CAN1_Receive.msg);
 
 			}break;
-					case CAN_BUS2_BELTMOTOR2_FEEDBACK_MSG_ID:
+					case CAN_BUS2_BELTMOTOR2_FEEDBACK_MSG_ID://左边轮子为206
 			{
 	//			BeltFrameCounter[1]++;
 
-				get_measure(&BeltM2_Measure, &CAN1_Receive.msg);
+				get_measure(&LBeltM_Measure, &CAN1_Receive.msg);
 
 			}break;
 			default:

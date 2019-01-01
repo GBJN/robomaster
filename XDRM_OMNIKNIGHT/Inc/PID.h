@@ -113,6 +113,29 @@ else if(val>=max)\
 	&PID_Reset,\
 }
 
+
+#define BELT_MOTOR_SPEED_PID_DEFAULT \
+{\
+	0,\
+	0,\
+	{0,0,0},\
+	CHASSIS_SPEED_KP_DEFAULTS,\
+	CHASSIS_SPEED_KI_DEFAULTS,\
+	CHASSIS_SPEED_KD_DEFAULTS,\
+	0,\
+	0,\
+	0,\
+	40,\
+	0.005,\
+	20,\
+	0,\
+	13000,\
+	0,\
+	0,\
+	0,\
+	&PID_Calc,\
+	&PID_Reset,\
+}
 #define CHASSIS_MOTOR_ROTATE_PID_DEFAULT \
 {\
 	0,\

@@ -55,6 +55,7 @@
 #include "cmsis_os.h"
 #include "CanBusTask.h"
 #include "ControlTask.h"
+#include "StatusMachine.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */     
@@ -98,6 +99,8 @@ BaseType_txTaskCallApplicationTaskHook();执行任务的应用钩子函数
 osThreadId Led_ToggleHandle;
 osThreadId Can_SendHandle;
 osThreadId Task_ControlHandle;
+osThreadId Status_UpdateHandle;
+
 osMessageQId myQueue01Handle;
 osMutexId myMutex01Handle;
 
@@ -147,6 +150,9 @@ void MX_FREERTOS_Init(void) {
   osThreadDef(Drivers_Control, Drivers_Control_Task, osPriorityRealtime, 0, 256);
   Task_ControlHandle = osThreadCreate(osThread(Drivers_Control), NULL);
 
+
+  osThreadDef(Status_Update, StatusMachine, osPriorityRealtime, 0, 256);
+  Task_ControlHandle = osThreadCreate(osThread(Status_Update), NULL);
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
