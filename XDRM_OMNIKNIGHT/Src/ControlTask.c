@@ -2,19 +2,26 @@
 
 #include "Driver_Chassis.h"
 #include "Driver_Beltraise.h"
+#include "Driver_GuideWheel.h"
+#include "Driver_Sensor.h"
+#include "Driver_Manipulator.h"
 
-
+#include "CanBusTask.h"
 void ControlTask(void)
 {
 	static uint32_t tick = 0;
 	tick++;
+
+	InfraredSensor_StateGet();
 	if(tick%4==0)
 	{
 		Chassis_Control();
+		
 	}
-	
-	
+	Manipulator_Control();
+	GuideWheel_Control();
 	Belt_Control();
+	
 }
 
 

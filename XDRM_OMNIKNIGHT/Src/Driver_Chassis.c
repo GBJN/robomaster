@@ -4,21 +4,18 @@
 #include "Driver_Remote.h"
 #include "math.h"
 #include "config.h"
-
+#include "Driver_Sensor.h"
 
 
 #define M_PI  (float)3.1415926535f
 #define Ang2Rad(m)  (m/180.0f*M_PI)
-PID_Regulator_t CMRotatePID = CHASSIS_MOTOR_ROTATE_PID_DEFAULT; 
-PID_Regulator_t CM1SpeedPID = CHASSIS_MOTOR_SPEED_PID_DEFAULT;
-PID_Regulator_t CM2SpeedPID = CHASSIS_MOTOR_SPEED_PID_DEFAULT;
-PID_Regulator_t CM3SpeedPID = CHASSIS_MOTOR_SPEED_PID_DEFAULT;
-PID_Regulator_t CM4SpeedPID = CHASSIS_MOTOR_SPEED_PID_DEFAULT;
 
 ChassisDataTypeDef ChassisData;
 
-
-
+uint8_t Foward_C_flag = 0;
+uint8_t Back_C_flag = 0;
+extern uint8_t BM_AngelGet;
+extern uint8_t steps_down;
 
 void CM_Get_PID(void)
 {
@@ -107,20 +104,17 @@ static void CalculateWheelSpeed(float vx, float vy, float omega, float radian, u
 
 
 
-
+uint32_t tick_c_1 = 0;
 
 uint16_t underpan_acc = 30;
 
 void CM_Get_SpeedRef(void)
 {
-		
-	
-	
-		if(RC_CtrlData.rc.s2 == 1)
+		if(RC_CtrlData.rc.s2 == 1||RC_CtrlData.rc.s2 == 3)
 		{
 			ChassisData.ChassisSpeedRef.Y = RC_CtrlData.rc.ch1;
 			ChassisData.ChassisSpeedRef.X = RC_CtrlData.rc.ch0;
-			ChassisData.ChassisSpeedRef.Omega  = 0;
+			ChassisData.ChassisSpeedRef.Omega  = RC_CtrlData.rc.ch2/2;
 			ChassisData.ChassisAngle = 0;//GMYawEncoder.ecd_angle;//跟随，这个angle不清楚
 			
 			static int16_t Y_temp = 0;
@@ -153,9 +147,54 @@ void CM_Get_SpeedRef(void)
 			{
 				X_temp = RC_CtrlData.rc.ch0;
 			}
-			ChassisData.ChassisSpeedRef.Y		= Y_temp * 1;
+			ChassisData.ChassisSpeedRef.Y		= -Y_temp * 1;
 			ChassisData.ChassisSpeedRef.X   	= X_temp * 1; 
+			
+			
+			
+				if(RC_CtrlData.rc.s1 == 1)
+		{
+			if(Foward_C_flag == 1)
+			{
+				ChassisData.ChassisSpeedRef.Y = -250;//
+				if(xTaskGetTickCount() - tick_c_1 > 1000)//2000/3000
+				{
+					Foward_C_flag = 0;
+				}
+			}
+			else 
+						ChassisData.ChassisSpeedRef.Y = -0;//
+
 		}
+		else if(RC_CtrlData.rc.s1 == 2)
+		{
+			if(Back_C_flag==1)
+			{
+				ChassisData.ChassisSpeedRef.Y = 100;
+				if(InfraredState_back == 1 && InfraredState_front == 0)//后方传感器检测到悬空
+				{
+					Back_C_flag = 0;
+					BM_AngelGet = 1;
+					steps_down++;
+				}
+			}
+			else
+			{
+				ChassisData.ChassisSpeedRef.Y = 0;
+			}
+		}
+		}
+		else
+		{
+			ChassisData.ChassisSpeedRef.Y = 0;
+			ChassisData.ChassisSpeedRef.X = 0;
+			ChassisData.ChassisSpeedRef.Omega  = 0;
+			ChassisData.ChassisAngle = 0;
+		
+		}
+		
+		
+	
 		CalculateWheelSpeed(ChassisData.ChassisSpeedRef.X,\
 											ChassisData.ChassisSpeedRef.Y,\
 											ChassisData.ChassisSpeedRef.Omega,\

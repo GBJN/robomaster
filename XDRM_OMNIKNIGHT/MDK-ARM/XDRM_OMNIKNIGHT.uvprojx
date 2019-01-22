@@ -335,7 +335,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F427xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Drivers/CMSIS/Include;..\Src</IncludePath>
+              <IncludePath>../Inc;../Drivers/STM32F4xx_HAL_Driver/Inc;../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;../Drivers/CMSIS/Device/ST/STM32F4xx/Include;../Middlewares/Third_Party/FreeRTOS/Source/include;../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;../Drivers/CMSIS/Include;..\Src;..\Inc;..\Src;..\MDK-ARM</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -470,6 +470,11 @@
               <FilePath>.\startup_stm32f427xx.s</FilePath>
             </File>
             <File>
+              <FileName>Driver_Beltraise.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\Driver_Beltraise.c</FilePath>
+            </File>
+            <File>
               <FileName>BeepTask.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\BeepTask.c</FilePath>
@@ -495,11 +500,6 @@
               <FilePath>..\Src\PID.c</FilePath>
             </File>
             <File>
-              <FileName>Driver_Beltraise.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\Driver_Beltraise.c</FilePath>
-            </File>
-            <File>
               <FileName>ControlTask.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\ControlTask.c</FilePath>
@@ -508,6 +508,21 @@
               <FileName>StatusMachine.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\StatusMachine.c</FilePath>
+            </File>
+            <File>
+              <FileName>Driver_GuideWheel.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\Driver_GuideWheel.c</FilePath>
+            </File>
+            <File>
+              <FileName>Driver_Sensor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\Driver_Sensor.c</FilePath>
+            </File>
+            <File>
+              <FileName>Driver_Manipulator.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\Driver_Manipulator.c</FilePath>
             </File>
           </Files>
         </Group>

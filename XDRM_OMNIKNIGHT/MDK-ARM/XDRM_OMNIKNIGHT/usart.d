@@ -58,5 +58,6 @@ xdrm_omniknight\usart.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semp
 xdrm_omniknight\usart.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
 xdrm_omniknight\usart.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\math.h
 xdrm_omniknight\usart.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\string.h
+xdrm_omniknight\usart.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\stdlib.h
 xdrm_omniknight\usart.o: ../Inc/gpio.h
 xdrm_omniknight\usart.o: ../Inc/dma.h

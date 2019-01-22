@@ -58,5 +58,10 @@ xdrm_omniknight\controltask.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal
 xdrm_omniknight\controltask.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 xdrm_omniknight\controltask.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\math.h
 xdrm_omniknight\controltask.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\string.h
+xdrm_omniknight\controltask.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\stdlib.h
 xdrm_omniknight\controltask.o: ../Inc/Driver_Chassis.h
 xdrm_omniknight\controltask.o: ../Inc/Driver_Beltraise.h
+xdrm_omniknight\controltask.o: ../Inc/Driver_GuideWheel.h
+xdrm_omniknight\controltask.o: ../Inc/Driver_Sensor.h
+xdrm_omniknight\controltask.o: ../Inc/Driver_Manipulator.h
+xdrm_omniknight\controltask.o: ../Inc/CanBusTask.h

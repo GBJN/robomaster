@@ -61,6 +61,7 @@ xdrm_omniknight\main.o: ../Inc/config.h
 xdrm_omniknight\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 xdrm_omniknight\main.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\math.h
 xdrm_omniknight\main.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\string.h
+xdrm_omniknight\main.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\stdlib.h
 xdrm_omniknight\main.o: ../Inc/crc.h
 xdrm_omniknight\main.o: ../Inc/dac.h
 xdrm_omniknight\main.o: ../Inc/dma.h
@@ -69,3 +70,4 @@ xdrm_omniknight\main.o: ../Inc/spi.h
 xdrm_omniknight\main.o: ../Inc/tim.h
 xdrm_omniknight\main.o: ../Inc/usart.h
 xdrm_omniknight\main.o: ../Inc/gpio.h
+xdrm_omniknight\main.o: ../Inc/Driver_GuideWheel.h

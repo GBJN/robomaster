@@ -60,6 +60,7 @@ xdrm_omniknight\stm32f4xx_it.o: ../Inc/config.h
 xdrm_omniknight\stm32f4xx_it.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 xdrm_omniknight\stm32f4xx_it.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\math.h
 xdrm_omniknight\stm32f4xx_it.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\string.h
+xdrm_omniknight\stm32f4xx_it.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\stdlib.h
 xdrm_omniknight\stm32f4xx_it.o: ../Inc/BSP_Data.h
 xdrm_omniknight\stm32f4xx_it.o: ../Inc/can.h
 xdrm_omniknight\stm32f4xx_it.o: ../Inc/CanBusTask.h

@@ -58,5 +58,6 @@ xdrm_omniknight\driver_remote.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_h
 xdrm_omniknight\driver_remote.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 xdrm_omniknight\driver_remote.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\math.h
 xdrm_omniknight\driver_remote.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\string.h
+xdrm_omniknight\driver_remote.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\stdlib.h
 xdrm_omniknight\driver_remote.o: ../Inc/Ramp.h
 xdrm_omniknight\driver_remote.o: ../Inc/Driver_Chassis.h

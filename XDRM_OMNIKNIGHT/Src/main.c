@@ -66,6 +66,7 @@
 
 #include "config.h"
 #include "usart.h"
+#include "Driver_GuideWheel.h"
 
 
 
@@ -123,9 +124,11 @@ int main(void)
   MX_DMA_Init();
   MX_CAN1_Init();
 	MX_USART1_UART_Init();
+  MX_TIM4_Init();
+
 //  MX_SPI4_Init();
   MX_TIM3_Init();
-
+	MotorInit();
   /* USER CODE BEGIN 2 */
 	
 

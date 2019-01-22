@@ -60,5 +60,6 @@ xdrm_omniknight\freertos.o: ../Inc/Config.h
 xdrm_omniknight\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 xdrm_omniknight\freertos.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\math.h
 xdrm_omniknight\freertos.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\string.h
+xdrm_omniknight\freertos.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\stdlib.h
 xdrm_omniknight\freertos.o: ../Inc/ControlTask.h
 xdrm_omniknight\freertos.o: ../Inc/StatusMachine.h

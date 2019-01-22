@@ -58,5 +58,7 @@ xdrm_omniknight\canbustask.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_
 xdrm_omniknight\canbustask.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 xdrm_omniknight\canbustask.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\math.h
 xdrm_omniknight\canbustask.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\string.h
+xdrm_omniknight\canbustask.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\stdlib.h
 xdrm_omniknight\canbustask.o: ../Inc/can.h
 xdrm_omniknight\canbustask.o: ../Inc/BSP_Data.h
+xdrm_omniknight\canbustask.o: ../Inc/PID.h

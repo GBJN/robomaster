@@ -7,27 +7,14 @@
 
 RC_Ctrl RC_CtrlData;
 
-
-
-
-
-
-
-
-
 uint8_t stick_store = 0;
-
-
-
-
-
 
 uint8_t stick1_change(void)
 {		
 	stick_store<<= 2;
 	stick_store |= RC_CtrlData.rc.s1;
 
-		if(((stick_store>>2)&0x03) != RC_CtrlData.rc.s1)  //这里把00000011改成0x03之后就可以了
+		if(((stick_store>>2)&0x03) != RC_CtrlData.rc.s1)  //这里把00000011改成0x03之后就可以了	
 		{		
 			return 1;
 		}
@@ -42,11 +29,13 @@ uint32_t timetick2 = 0;
 uint32_t timetick1 = 0;
 uint32_t time_diff_1to3 = 0;
 uint32_t time_diff_1to2 = 0;
+uint8_t S_switch = 0;
 
 uint8_t Action_stick = 0;//stick0 的三次变化值及最早恒定值
 uint8_t stick1_action(void)
 {
-	if(stick1_change())
+	S_switch = stick1_change();
+	if(S_switch != 0)
 	{
 			
 		time_diff_1to3 = xTaskGetTickCount() - timetick2;
@@ -67,7 +56,10 @@ uint8_t stick1_action(void)
 			return TWO_CHANGE;
 		}
 	 else 
+	 {
+		 stick_store = RC_CtrlData.rc.s1;//若一定时间内未检测到再次跳变，则只变了一次，保存值清空
 			return ONE_CHANGE;
+	 }
 	}
 	else 
 		return NO_CHANGE;
@@ -94,7 +86,6 @@ uint8_t Remote_CheckJumpKey(uint16_t Key)
 }
 
 
-uint8_t S_switch = 0;
 
 
 void RemoteDataProcess(uint8_t *pData)
@@ -126,7 +117,8 @@ void RemoteDataProcess(uint8_t *pData)
     RC_CtrlData.mouse.press_r = pData[13];
  
     RC_CtrlData.key.v = ((int16_t)pData[14]) | ((int16_t)pData[15] << 8);
-		S_switch = stick1_change();
+//		S_switch = stick1_change();
+		stick1_action();
 }
 
 

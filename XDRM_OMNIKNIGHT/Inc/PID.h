@@ -191,11 +191,11 @@ extern PID_Regulator_t CM1SpeedPID;
 extern PID_Regulator_t CM2SpeedPID;
 extern PID_Regulator_t CM3SpeedPID;
 extern PID_Regulator_t CM4SpeedPID;
-extern PID_Regulator_t BeltM1PositionPID;
-extern PID_Regulator_t BeltM1SpeedPID;
-extern PID_Regulator_t BeltM2PositionPID;
-extern PID_Regulator_t BeltM2SpeedPID;
-
+//extern PID_Regulator_t BeltM1PositionPID;
+extern PID_Regulator_t LBMSpeedPID;
+//extern PID_Regulator_t BeltM2PositionPID;
+extern PID_Regulator_t RBMSpeedPID;
+extern PID_Regulator_t AMRotatePID;
 
 void PID_Reset(PID_Regulator_t *pid);
 void PID_Calc(PID_Regulator_t *pid);

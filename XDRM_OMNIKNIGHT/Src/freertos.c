@@ -147,7 +147,7 @@ void MX_FREERTOS_Init(void) {
   osThreadDef(Can_Send, Can_Send_Task, osPriorityRealtime, 0, 256);
   Can_SendHandle = osThreadCreate(osThread(Can_Send), NULL);
 
-  osThreadDef(Drivers_Control, Drivers_Control_Task, osPriorityRealtime, 0, 256);
+  osThreadDef(Drivers_Control, Drivers_Control_Task, osPriorityRealtime, 0, 512);
   Task_ControlHandle = osThreadCreate(osThread(Drivers_Control), NULL);
 
 
