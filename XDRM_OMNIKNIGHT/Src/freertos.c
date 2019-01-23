@@ -100,6 +100,7 @@ osThreadId Led_ToggleHandle;
 osThreadId Can_SendHandle;
 osThreadId Task_ControlHandle;
 osThreadId Status_UpdateHandle;
+osThreadId Superviese_TaskHandle;
 
 osMessageQId myQueue01Handle;
 osMutexId myMutex01Handle;
@@ -153,6 +154,8 @@ void MX_FREERTOS_Init(void) {
 
   osThreadDef(Status_Update, StatusMachine, osPriorityRealtime, 0, 256);
   Task_ControlHandle = osThreadCreate(osThread(Status_Update), NULL);
+	
+	//osThreadDef(Superviese, Superviese_Task, osPriorityRealtime, 0, 256);
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
