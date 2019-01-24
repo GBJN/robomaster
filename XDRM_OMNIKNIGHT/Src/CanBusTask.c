@@ -1,7 +1,5 @@
 #include "CanBusTask.h"
-
-
-
+#include "SuperviseTask.h"
 #include "can.h"
 #include "BSP_Data.h"
 #include "PID.h"
@@ -112,11 +110,12 @@ uint32_t can_count;
 void Can_Msg_Process(void)
 {
 	can_count++;
+	CAN_Res_FrameCounter++;//可能会有点问题，暂时先加到这里
 	switch(CAN1_Receive.rx_header.StdId)
 	{
 			case CAN_BUS1_MOTOR1_FEEDBACK_MSG_ID:
 			{
-	//			ChassisFrameCounter[0]++;
+				ChassisFrameCounter[0]++;
 
 				get_measure(&Motor1_Measure, &CAN1_Receive.msg);
 
@@ -124,40 +123,42 @@ void Can_Msg_Process(void)
 			break;
 			case CAN_BUS1_MOTOR2_FEEDBACK_MSG_ID:
 			{
-	//			ChassisFrameCounter[1]++;
+				ChassisFrameCounter[1]++;
 				get_measure(&Motor2_Measure, &CAN1_Receive.msg);
 
 			}
 			break;
 			case CAN_BUS1_MOTOR3_FEEDBACK_MSG_ID:
 			{
-	//			ChassisFrameCounter[2]++;
+				ChassisFrameCounter[2]++;
 				get_measure(&Motor3_Measure, &CAN1_Receive.msg);
 
 			}
 			break;
 			case CAN_BUS1_MOTOR4_FEEDBACK_MSG_ID:
 			{
-	//			ChassisFrameCounter[3]++;
+				ChassisFrameCounter[3]++;
 				get_measure(&Motor4_Measure, &CAN1_Receive.msg);
 			}
 			break;
 			case CAN_BUS1_BELTMOTOR1_FEEDBACK_MSG_ID:
 			{
-	//			BeltFrameCounter[0]++;
+				RbeltFrameCounter++;
 
 				get_measure(&RBeltM_Measure, &CAN1_Receive.msg);
 
 			}break;
 			case CAN_BUS1_BELTMOTOR2_FEEDBACK_MSG_ID://左边轮子为206
 			{
-	//			BeltFrameCounter[1]++;
+				LbeltFrameCounter++;
 
 				get_measure(&LBeltM_Measure, &CAN1_Receive.msg);
 
 			}break;
 			case CAN_BUS1_ARMMOTOR_FEEDBACK_MSG_ID:
 			{
+				MotorArmFrameCounter++;
+				
 				get_measure(&ARMM_Measure,&CAN1_Receive.msg);
 				EncoderProcess(&TurntableEncoder,&CAN1_Receive.msg);
 			}break;
@@ -217,7 +218,8 @@ void Can_Send(void)
 		CAN_bufferPop(&Que_CAN1_Tx,&CAN1_ReallySend);
 
 		HAL_CAN_AddTxMessage(&hcan1,&CAN1_ReallySend.tx_header,CAN1_ReallySend.msg.data,(uint32_t*)CAN_TX_MAILBOX0);//若0邮箱满了，就自动加到下一个
-
+		
+		CAN_Send_FrameCounter++;
 
 
 		

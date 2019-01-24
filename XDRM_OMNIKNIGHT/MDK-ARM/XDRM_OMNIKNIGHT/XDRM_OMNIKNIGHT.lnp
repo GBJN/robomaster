@@ -28,6 +28,7 @@
 "xdrm_omniknight\driver_guidewheel.o"
 "xdrm_omniknight\driver_sensor.o"
 "xdrm_omniknight\driver_manipulator.o"
+"xdrm_omniknight\supervisetask.o"
 "xdrm_omniknight\stm32f4xx_hal_adc.o"
 "xdrm_omniknight\stm32f4xx_hal_adc_ex.o"
 "xdrm_omniknight\stm32f4xx_hal_can.o"

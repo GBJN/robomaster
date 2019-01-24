@@ -42,6 +42,7 @@
 #include "BSP_Data.h"
 #include "CanBusTask.h"
 #include "Driver_Remote.h"
+#include "SuperviseTask.h"
 
 /* USER CODE END 0 */
 
@@ -251,6 +252,7 @@ void USART1_IRQHandler(void)
 		if(RX1_Length == 18u)
 		{
 			RemoteDataProcess(UART1_RXBUFF);
+			DBUSFrameCounter++;
 		}
 		HAL_UART_Receive_DMA(&huart1,UART1_RXBUFF,UART1_RXBUFF_SIZE);//÷ÿ∆ÙDMA
 	}
