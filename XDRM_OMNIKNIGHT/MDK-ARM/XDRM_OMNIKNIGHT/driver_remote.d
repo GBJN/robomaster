@@ -61,3 +61,8 @@ xdrm_omniknight\driver_remote.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 xdrm_omniknight\driver_remote.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 xdrm_omniknight\driver_remote.o: ../Inc/Ramp.h
 xdrm_omniknight\driver_remote.o: ../Inc/Driver_Chassis.h
+xdrm_omniknight\driver_remote.o: ../Inc/StatusMachine.h
+xdrm_omniknight\driver_remote.o: ../Inc/Driver_Beltraise.h
+xdrm_omniknight\driver_remote.o: ../Inc/Driver_GuideWheel.h
+xdrm_omniknight\driver_remote.o: ../Inc/Driver_Manipulator.h
+xdrm_omniknight\driver_remote.o: ../Inc/Driver_Sensor.h

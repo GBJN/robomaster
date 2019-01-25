@@ -62,4 +62,3 @@ xdrm_omniknight\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 xdrm_omniknight\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 xdrm_omniknight\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 xdrm_omniknight\freertos.o: ../Inc/ControlTask.h
-xdrm_omniknight\freertos.o: ../Inc/StatusMachine.h

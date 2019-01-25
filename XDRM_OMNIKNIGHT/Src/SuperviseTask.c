@@ -284,7 +284,7 @@ void Superviese_Task(void const * argument)
 			vTaskDelayUntil(&xLastWakeTime,1/portTICK_RATE_MS);//此时处于阻塞态
 
   }
-  /* USER CODE END Can_Send_Task */
+
 }
 		
 

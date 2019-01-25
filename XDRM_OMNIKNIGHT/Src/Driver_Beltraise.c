@@ -7,7 +7,7 @@
 
 int16_t BeltMotorSpeedRef[2] = {0,0};
 
-
+BeltModeTypeDef BeltMode;
 int bmkp = 60;
 
 //现在要想一下整个工程大概怎么写了。
@@ -232,6 +232,74 @@ void BM_Get_SpeedRef(void)
 		BeltMotorSpeedRef[1] = -0;
 	}
 }
+
+
+void BM_Get_SpeedRef_SM(void)
+{
+	switch (BeltMode)
+	{
+		case Normal_Rc_BeltMove:
+		{
+			BeltMotorSpeedRef[0] = RC_CtrlData.rc.ch3/2;
+			BeltMotorSpeedRef[1] = -RC_CtrlData.rc.ch3/2;
+		}break;
+	
+		//case Normal_Key_BeltMove{}以后再写
+
+		case Auto_Up_Island_BeltMove:
+		{
+			static int32_t LBM_Angle = 0;
+			static int32_t RBM_Angle = 0;
+			BeltMotorSpeedRef[0] = -raise_speed;//250
+			BeltMotorSpeedRef[1] = raise_speed;
+			if(BM_AngelGet == 1)
+			{
+				LBM_Angle = LBeltM_Measure.ecd_angle;
+				RBM_Angle = RBeltM_Measure.ecd_angle;
+				BM_AngelGet = 0;
+			}
+			if(abs(LBeltM_Measure.ecd_angle - LBM_Angle) > THRESHOLD)//9000
+			{
+				BeltMotorSpeedRef[0] = 0;
+				BeltMotorSpeedRef[1] = 0;
+				Back_C_flag = 1;
+			}
+		}break;
+
+		case Auto_Down_Island_BeltMove:
+		{
+			static int32_t LBM_Angle = 0;
+			static int32_t RBM_Angle = 0;
+			BeltMotorSpeedRef[0] = raise_speed;//250
+			BeltMotorSpeedRef[1] = -raise_speed;
+			if(BM_AngelGet == 1)
+			{
+				LBM_Angle = LBeltM_Measure.ecd_angle;
+				RBM_Angle = RBeltM_Measure.ecd_angle;
+				BM_AngelGet = 0;
+			}
+			if(abs(LBeltM_Measure.ecd_angle - LBM_Angle) > THRESHOLD)//9000
+			{
+				BeltMotorSpeedRef[0] = 100;
+				BeltMotorSpeedRef[1] = -100;
+				Back_GW_flag = 1;
+			}
+		}break;
+
+		case BeltMove_Stop:
+		{
+			BeltMotorSpeedRef[0] = 0;
+			BeltMotorSpeedRef[1] = 0;
+		}break;
+
+		default:
+		{
+			BeltMotorSpeedRef[0] = 0;
+			BeltMotorSpeedRef[1] = 0;
+		}break;
+	}
+}
+
 
 void BM_Set_Current(void)
 {

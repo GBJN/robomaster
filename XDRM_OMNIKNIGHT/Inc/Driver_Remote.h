@@ -107,6 +107,12 @@ typedef enum
 }change_e;
 
 
+typedef enum
+{
+	REMOTE_INPUT = 0,
+	KEYBOARD_INPUT = 1,
+	STOP =3,
+}InputMode_e;
 
 
 uint8_t Remote_CheckJumpKey(uint16_t Key);
