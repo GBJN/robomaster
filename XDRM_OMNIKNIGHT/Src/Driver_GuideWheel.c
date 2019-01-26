@@ -13,6 +13,7 @@ uint8_t Foward_G_flag = 0;
 uint8_t Back_GW_flag = 0;
 uint8_t GW_direction;
 uint16_t GW_Speed;
+GuideWheelModeTypeDef GuideWheelMode;
 void MotorInit(void)
 {
 	MotorStart();//关闭刹车停机
@@ -56,8 +57,7 @@ void MotorSpeedSet(void)
 				MotorStop();
 				Foward_G_flag =0;
 				steps++;
-			}
-				//一个车的距离
+			}//一个车的距离
 		}
 			else if(Back_GW_flag == 1)
 			{
@@ -80,6 +80,64 @@ void MotorSpeedSet(void)
 		
 }
 
+void MotorSpeedSet_SM(void)
+{
+	switch (GuideWheelMode)
+	{
+		case Normal_Rc_GuideWheelMove:
+		{
+			MotorStart();
+			if(RC_CtrlData.rc.ch1 > 0)
+			{
+				MotorInit();
+			}
+			else if(RC_CtrlData.rc.ch1 < 0)
+			{
+				MotorBackInit();
+			}
+			GW_Speed = 100-(abs(RC_CtrlData.rc.ch1)/7.33);//占空比10-100，0时导轮停止660/90=7.33
+			__HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,GW_Speed);
+			__HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_2,GW_Speed);
+		}break;//当时遥控器遥控导轮的bug还没有改过来
+
+		case Auto_Up_Island_GuideWheelMove:
+		{
+			MotorStart();
+			__HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,50);
+			__HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_2,50);
+			if((count1+count2)>2000)//抬腿时全用导轮
+			{//19*6*2*n圈 = 2*信号数*距离(单位信号 = 8000)
+				count1 = count2 = 0;
+				MotorStop();
+				GuideWheelMode = GuideWheelMove_Stop;
+			}//一个车的距离
+		}break;
+
+		case Auto_Down_Island_GuideWheelMove:
+		{
+			MotorStart();
+			MotorBackInit();
+			__HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,50);
+			__HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_2,50);
+			if(InfraredState_back == 1 && InfraredState_front == 1)//后方传感器检测到悬空
+			{
+				MotorStop();
+				//BM_AngelGet = 1;
+				GuideWheelMode = GuideWheelMove_Stop;
+			}
+		}break;
+
+		case GuideWheelMove_Stop:
+		{
+			MotorStop();
+		}break;
+
+		default:
+		{
+			MotorStop();
+		}break;
+	}
+}
 void GuideWheel_Control(void)
 {
 	MotorSpeedSet();

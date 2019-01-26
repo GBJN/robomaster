@@ -2,9 +2,9 @@
 #include "config.h"
 #include "Ramp.h"
 #include "Driver_Chassis.h"
+#include "StatusMachine.h"
 
-
-
+InputMode_e	InputMode;
 RC_Ctrl RC_CtrlData;
 
 uint8_t stick_store = 0;

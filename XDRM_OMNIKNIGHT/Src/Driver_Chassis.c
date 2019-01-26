@@ -11,6 +11,7 @@
 #define Ang2Rad(m)  (m/180.0f*M_PI)
 
 ChassisDataTypeDef ChassisData;
+ChassisModeTypeDef ChassisMode;
 
 uint8_t Foward_C_flag = 0;
 uint8_t Back_C_flag = 0;
@@ -201,6 +202,96 @@ void CM_Get_SpeedRef(void)
 											Ang2Rad(ChassisData.ChassisAngle),30000);
 }
 
+
+void CM_Get_SpeedRef_SM(void)
+{
+	switch (ChassisMode)
+	{
+		case Normal_Rc_ChassisMove:
+		{
+			ChassisData.ChassisSpeedRef.Y = RC_CtrlData.rc.ch1;
+			ChassisData.ChassisSpeedRef.X = RC_CtrlData.rc.ch0;
+			ChassisData.ChassisSpeedRef.Omega  = RC_CtrlData.rc.ch2/2;
+			ChassisData.ChassisAngle = 0;//GMYawEncoder.ecd_angle;//跟随，这个angle不清楚
+			
+			static int16_t Y_temp = 0;
+			static int16_t X_temp = 0;
+			//限制遥控器加速度
+			if(abs(RC_CtrlData.rc.ch1 - Y_temp) > underpan_acc)
+			{
+				if(RC_CtrlData.rc.ch1 >Y_temp && RC_CtrlData.rc.ch1 > 0)
+					Y_temp+=underpan_acc;
+				else if (RC_CtrlData.rc.ch1 <Y_temp && RC_CtrlData.rc.ch1 < 0)
+					Y_temp-=underpan_acc;	
+				else
+					Y_temp = RC_CtrlData.rc.ch1;
+			}
+			else
+			{
+				Y_temp = RC_CtrlData.rc.ch1;
+			}
+			
+			if(abs(RC_CtrlData.rc.ch0 - X_temp) > underpan_acc)
+			{
+				if(RC_CtrlData.rc.ch0 >X_temp && RC_CtrlData.rc.ch0 > 0)
+					X_temp+=underpan_acc;
+				else if (RC_CtrlData.rc.ch0 <X_temp && RC_CtrlData.rc.ch0 < 0)
+					X_temp-=underpan_acc;	
+				else
+					X_temp = RC_CtrlData.rc.ch0;
+			}
+			else
+			{
+				X_temp = RC_CtrlData.rc.ch0;
+			}
+			ChassisData.ChassisSpeedRef.Y		= -Y_temp * 1;
+			ChassisData.ChassisSpeedRef.X   	= X_temp * 1; 
+		}break;
+
+		//case Normal_Key_ChassisMove:{}以后写
+
+		case Auto_Up_Island_ChassisMove:
+		{
+			ChassisData.ChassisSpeedRef.Y = -250;//
+			if(xTaskGetTickCount() - tick_c_1 > 1000)//2000/3000
+			{
+				ChassisMode = ChassisMove_Stop;
+			}
+		}break;
+
+		case Auto_Down_Island_ChassisMove:
+		{
+			ChassisData.ChassisSpeedRef.Y = 100;
+			if(InfraredState_back == 1 && InfraredState_front == 0)//后方传感器检测到悬空
+			{
+				//BM_AngelGet = 1;
+				//steps_down++;这两句应该不能这样写，以后还要改
+				ChassisMode = ChassisMove_Stop;
+			}
+		}break;
+
+		case ChassisMove_Stop:
+		{
+			ChassisData.ChassisSpeedRef.Y = 0;
+			ChassisData.ChassisSpeedRef.X = 0;
+			ChassisData.ChassisSpeedRef.Omega  = 0;
+			ChassisData.ChassisAngle = 0;
+		}
+	
+		default:
+		{
+			ChassisData.ChassisSpeedRef.Y = 0;
+			ChassisData.ChassisSpeedRef.X = 0;
+			ChassisData.ChassisSpeedRef.Omega  = 0;
+			ChassisData.ChassisAngle = 0;
+		}break;
+	}
+	
+	CalculateWheelSpeed(ChassisData.ChassisSpeedRef.X,\
+						ChassisData.ChassisSpeedRef.Y,\
+						ChassisData.ChassisSpeedRef.Omega,\
+						Ang2Rad(ChassisData.ChassisAngle),30000);
+}
 
 void CM_Set_Current(void)
 {

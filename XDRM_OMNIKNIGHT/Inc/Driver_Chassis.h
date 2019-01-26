@@ -22,6 +22,14 @@ typedef struct
 	ChassisSpeed_Ref_TypeDef ChassisSpeedRef;
 }ChassisDataTypeDef;
 
+typedef enum
+{
+    Normal_Rc_ChassisMove = 0,
+    Normal_Key_ChassisMove,
+    ChassisMove_Stop,
+    Auto_Up_Island_ChassisMove,
+    Auto_Down_Island_ChassisMove,
+}ChassisModeTypeDef;
 
 
 

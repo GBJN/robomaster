@@ -8,7 +8,14 @@
 
 #define THRESHOLD   9000
 
-
+typedef enum
+{
+    Normal_Rc_BeltMove,
+    Normal_Key_BeltMove,
+    BeltMove_Stop,
+    Auto_Up_Island_BeltMove,
+    Auto_Down_Island_BeltMove,
+}BeltModeTypeDef;
 
 
 

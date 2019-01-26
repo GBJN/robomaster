@@ -1,5 +1,7 @@
 {
     "files.associations": {
-        "supervisetask.h": "c"
+        "supervisetask.h": "c",
+        "driver_chassis.h": "c",
+        "driver_guidewheel.h": "c"
     }
 }
