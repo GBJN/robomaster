@@ -68,7 +68,7 @@ I (../Inc/spi.h)(0x5C47D253)
 I (../Inc/tim.h)(0x5C47D253)
 I (../Inc/usart.h)(0x5C47D253)
 I (../Inc/gpio.h)(0x5C47D253)
-I (../Inc/Driver_GuideWheel.h)(0x5C4B0AAD)
+I (../Inc/Driver_GuideWheel.h)(0x5C4DACD0)
 F (../Src/gpio.c)(0x5C47D254)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Drivers/CMSIS/Include -I ..\Src -I ..\Inc -I ..\Src -I ..\MDK-ARM-IC:\Users\92871\Documents\GitHub\工程\robomaster\XDRM_OMNIKNIGHT\MDK-ARM\RTE\_XDRM_OMNIKNIGHT-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F427xx -DUSE_HAL_DRIVER -DSTM32F427xx-o xdrm_omniknight\gpio.o --omf_browse xdrm_omniknight\gpio.crf --depend xdrm_omniknight\gpio.d)
 I (../Inc/gpio.h)(0x5C47D253)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5C47D253)
@@ -397,7 +397,7 @@ I (../Inc/Config.h)(0x5C47D253)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x57F606B6)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x57F606B8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x57F606B8)
-I (../Inc/ControlTask.h)(0x5C4AF2A8)
+I (../Inc/ControlTask.h)(0x5C4C1F9B)
 F (../Src/spi.c)(0x5C47D254)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Drivers/CMSIS/Include -I ..\Src -I ..\Inc -I ..\Src -I ..\MDK-ARM-IC:\Users\92871\Documents\GitHub\工程\robomaster\XDRM_OMNIKNIGHT\MDK-ARM\RTE\_XDRM_OMNIKNIGHT-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F427xx -DUSE_HAL_DRIVER -DSTM32F427xx-o xdrm_omniknight\spi.o --omf_browse xdrm_omniknight\spi.crf --depend xdrm_omniknight\spi.d)
 I (../Inc/spi.h)(0x5C47D253)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5C47D253)
@@ -857,8 +857,8 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x57F606B8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x57F606B8)
 I (../Inc/can.h)(0x5C47D253)
 F (.\startup_stm32f427xx.s)(0x5C47D254)(--cpu Cortex-M4.fp -g --apcs=interwork --pd "__MICROLIB SETA 1" -I ..\\Inc-IC:\Users\92871\Documents\GitHub\工程\robomaster\XDRM_OMNIKNIGHT\MDK-ARM\RTE\_XDRM_OMNIKNIGHT-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include--pd "__UVISION_VERSION SETA 522" --pd "_RTE_ SETA 1" --pd "STM32F427xx SETA 1"--list startup_stm32f427xx.lst --xref -o xdrm_omniknight\startup_stm32f427xx.o --depend xdrm_omniknight\startup_stm32f427xx.d)
-F (..\Src\Driver_Beltraise.c)(0x5C4B0697)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Drivers/CMSIS/Include -I ..\Src -I ..\Inc -I ..\Src -I ..\MDK-ARM-IC:\Users\92871\Documents\GitHub\工程\robomaster\XDRM_OMNIKNIGHT\MDK-ARM\RTE\_XDRM_OMNIKNIGHT-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F427xx -DUSE_HAL_DRIVER -DSTM32F427xx-o xdrm_omniknight\driver_beltraise.o --omf_browse xdrm_omniknight\driver_beltraise.crf --depend xdrm_omniknight\driver_beltraise.d)
-I (../Inc/Driver_Beltraise.h)(0x5C4AF2A8)
+F (..\Src\Driver_Beltraise.c)(0x5C4DA196)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Drivers/CMSIS/Include -I ..\Src -I ..\Inc -I ..\Src -I ..\MDK-ARM-IC:\Users\92871\Documents\GitHub\工程\robomaster\XDRM_OMNIKNIGHT\MDK-ARM\RTE\_XDRM_OMNIKNIGHT-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F427xx -DUSE_HAL_DRIVER -DSTM32F427xx-o xdrm_omniknight\driver_beltraise.o --omf_browse xdrm_omniknight\driver_beltraise.crf --depend xdrm_omniknight\driver_beltraise.d)
+I (../Inc/Driver_Beltraise.h)(0x5C4DACD0)
 I (../Inc/config.h)(0x5C47D253)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x5C485E3A)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x57F606B8)
@@ -917,10 +917,14 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5C47D253)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x57F606B6)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x57F606B8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x57F606B8)
-I (../Inc/PID.h)(0x5C47D253)
-I (../Inc/CanBusTask.h)(0x5C47D253)
+I (../Inc/StatusMachine.h)(0x5C4DA196)
+I (../Inc/Driver_Chassis.h)(0x5C4DACD0)
+I (../Inc/Driver_GuideWheel.h)(0x5C4DACD0)
+I (../Inc/Driver_Manipulator.h)(0x5C47D253)
 I (../Inc/Driver_Remote.h)(0x5C4ABE1A)
 I (../Inc/Driver_Sensor.h)(0x5C47D253)
+I (../Inc/PID.h)(0x5C47D253)
+I (../Inc/CanBusTask.h)(0x5C47D253)
 F (..\Src\BeepTask.c)(0x5C47D254)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Drivers/CMSIS/Include -I ..\Src -I ..\Inc -I ..\Src -I ..\MDK-ARM-IC:\Users\92871\Documents\GitHub\工程\robomaster\XDRM_OMNIKNIGHT\MDK-ARM\RTE\_XDRM_OMNIKNIGHT-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F427xx -DUSE_HAL_DRIVER -DSTM32F427xx-o xdrm_omniknight\beeptask.o --omf_browse xdrm_omniknight\beeptask.crf --depend xdrm_omniknight\beeptask.d)
 I (../Inc/BeepTask.h)(0x5C47D253)
 I (../Inc/Config.h)(0x5C47D253)
@@ -981,8 +985,8 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5C47D253)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x57F606B6)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x57F606B8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x57F606B8)
-F (..\Src\Driver_Chassis.c)(0x5C4B0697)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Drivers/CMSIS/Include -I ..\Src -I ..\Inc -I ..\Src -I ..\MDK-ARM-IC:\Users\92871\Documents\GitHub\工程\robomaster\XDRM_OMNIKNIGHT\MDK-ARM\RTE\_XDRM_OMNIKNIGHT-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F427xx -DUSE_HAL_DRIVER -DSTM32F427xx-o xdrm_omniknight\driver_chassis.o --omf_browse xdrm_omniknight\driver_chassis.crf --depend xdrm_omniknight\driver_chassis.d)
-I (../Inc/Driver_Chassis.h)(0x5C4AF2A8)
+F (..\Src\Driver_Chassis.c)(0x5C4DA196)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Drivers/CMSIS/Include -I ..\Src -I ..\Inc -I ..\Src -I ..\MDK-ARM-IC:\Users\92871\Documents\GitHub\工程\robomaster\XDRM_OMNIKNIGHT\MDK-ARM\RTE\_XDRM_OMNIKNIGHT-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F427xx -DUSE_HAL_DRIVER -DSTM32F427xx-o xdrm_omniknight\driver_chassis.o --omf_browse xdrm_omniknight\driver_chassis.crf --depend xdrm_omniknight\driver_chassis.d)
+I (../Inc/Driver_Chassis.h)(0x5C4DACD0)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
 I (../Inc/CanBusTask.h)(0x5C47D253)
 I (../Inc/Config.h)(0x5C47D253)
@@ -1045,6 +1049,10 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x57F606B8)
 I (../Inc/PID.h)(0x5C47D253)
 I (../Inc/Driver_Remote.h)(0x5C4ABE1A)
 I (../Inc/Driver_Sensor.h)(0x5C47D253)
+I (../Inc/StatusMachine.h)(0x5C4DA196)
+I (../Inc/Driver_Beltraise.h)(0x5C4DACD0)
+I (../Inc/Driver_GuideWheel.h)(0x5C4DACD0)
+I (../Inc/Driver_Manipulator.h)(0x5C47D253)
 F (..\Src\Driver_Remote.c)(0x5C4ACB1E)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Drivers/CMSIS/Include -I ..\Src -I ..\Inc -I ..\Src -I ..\MDK-ARM-IC:\Users\92871\Documents\GitHub\工程\robomaster\XDRM_OMNIKNIGHT\MDK-ARM\RTE\_XDRM_OMNIKNIGHT-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F427xx -DUSE_HAL_DRIVER -DSTM32F427xx-o xdrm_omniknight\driver_remote.o --omf_browse xdrm_omniknight\driver_remote.crf --depend xdrm_omniknight\driver_remote.d)
 I (../Inc/Driver_Remote.h)(0x5C4ABE1A)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
@@ -1106,10 +1114,10 @@ I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x57F606B6)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x57F606B8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x57F606B8)
 I (../Inc/Ramp.h)(0x5C47D253)
-I (../Inc/Driver_Chassis.h)(0x5C4AF2A8)
-I (../Inc/StatusMachine.h)(0x5C4AFBC8)
-I (../Inc/Driver_Beltraise.h)(0x5C4AF2A8)
-I (../Inc/Driver_GuideWheel.h)(0x5C4B0AAD)
+I (../Inc/Driver_Chassis.h)(0x5C4DACD0)
+I (../Inc/StatusMachine.h)(0x5C4DA196)
+I (../Inc/Driver_Beltraise.h)(0x5C4DACD0)
+I (../Inc/Driver_GuideWheel.h)(0x5C4DACD0)
 I (../Inc/Driver_Manipulator.h)(0x5C47D253)
 I (../Inc/Driver_Sensor.h)(0x5C47D253)
 F (..\Src\Ramp.c)(0x5C47D254)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Drivers/CMSIS/Include -I ..\Src -I ..\Inc -I ..\Src -I ..\MDK-ARM-IC:\Users\92871\Documents\GitHub\工程\robomaster\XDRM_OMNIKNIGHT\MDK-ARM\RTE\_XDRM_OMNIKNIGHT-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F427xx -DUSE_HAL_DRIVER -DSTM32F427xx-o xdrm_omniknight\ramp.o --omf_browse xdrm_omniknight\ramp.crf --depend xdrm_omniknight\ramp.d)
@@ -1118,7 +1126,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x57F606B8)
 F (..\Src\PID.c)(0x5C47D254)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Drivers/CMSIS/Include -I ..\Src -I ..\Inc -I ..\Src -I ..\MDK-ARM-IC:\Users\92871\Documents\GitHub\工程\robomaster\XDRM_OMNIKNIGHT\MDK-ARM\RTE\_XDRM_OMNIKNIGHT-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F427xx -DUSE_HAL_DRIVER -DSTM32F427xx-o xdrm_omniknight\pid.o --omf_browse xdrm_omniknight\pid.crf --depend xdrm_omniknight\pid.d)
 I (../Inc/PID.h)(0x5C47D253)
 F (..\Src\ControlTask.c)(0x5C4AFA15)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Drivers/CMSIS/Include -I ..\Src -I ..\Inc -I ..\Src -I ..\MDK-ARM-IC:\Users\92871\Documents\GitHub\工程\robomaster\XDRM_OMNIKNIGHT\MDK-ARM\RTE\_XDRM_OMNIKNIGHT-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F427xx -DUSE_HAL_DRIVER -DSTM32F427xx-o xdrm_omniknight\controltask.o --omf_browse xdrm_omniknight\controltask.crf --depend xdrm_omniknight\controltask.d)
-I (../Inc/ControlTask.h)(0x5C4AF2A8)
+I (../Inc/ControlTask.h)(0x5C4C1F9B)
 I (../Inc/config.h)(0x5C47D253)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x5C485E3A)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x57F606B8)
@@ -1177,17 +1185,17 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5C47D253)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x57F606B6)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x57F606B8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x57F606B8)
-I (../Inc/Driver_Chassis.h)(0x5C4AF2A8)
-I (../Inc/Driver_Beltraise.h)(0x5C4AF2A8)
-I (../Inc/Driver_GuideWheel.h)(0x5C4B0AAD)
+I (../Inc/Driver_Chassis.h)(0x5C4DACD0)
+I (../Inc/Driver_Beltraise.h)(0x5C4DACD0)
+I (../Inc/Driver_GuideWheel.h)(0x5C4DACD0)
 I (../Inc/Driver_Sensor.h)(0x5C47D253)
 I (../Inc/Driver_Manipulator.h)(0x5C47D253)
 I (../Inc/CanBusTask.h)(0x5C47D253)
-I (../Inc/StatusMachine.h)(0x5C4AFBC8)
+I (../Inc/StatusMachine.h)(0x5C4DA196)
 I (../Inc/Driver_Remote.h)(0x5C4ABE1A)
-F (..\Src\StatusMachine.c)(0x5C4B0AF1)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Drivers/CMSIS/Include -I ..\Src -I ..\Inc -I ..\Src -I ..\MDK-ARM-IC:\Users\92871\Documents\GitHub\工程\robomaster\XDRM_OMNIKNIGHT\MDK-ARM\RTE\_XDRM_OMNIKNIGHT-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F427xx -DUSE_HAL_DRIVER -DSTM32F427xx-o xdrm_omniknight\statusmachine.o --omf_browse xdrm_omniknight\statusmachine.crf --depend xdrm_omniknight\statusmachine.d)
-I (../Inc/StatusMachine.h)(0x5C4AFBC8)
-I (../Inc/Driver_Beltraise.h)(0x5C4AF2A8)
+F (..\Src\StatusMachine.c)(0x5C4DAD66)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Drivers/CMSIS/Include -I ..\Src -I ..\Inc -I ..\Src -I ..\MDK-ARM-IC:\Users\92871\Documents\GitHub\工程\robomaster\XDRM_OMNIKNIGHT\MDK-ARM\RTE\_XDRM_OMNIKNIGHT-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F427xx -DUSE_HAL_DRIVER -DSTM32F427xx-o xdrm_omniknight\statusmachine.o --omf_browse xdrm_omniknight\statusmachine.crf --depend xdrm_omniknight\statusmachine.d)
+I (../Inc/StatusMachine.h)(0x5C4DA196)
+I (../Inc/Driver_Beltraise.h)(0x5C4DACD0)
 I (../Inc/config.h)(0x5C47D253)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x5C485E3A)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x57F606B8)
@@ -1246,15 +1254,15 @@ I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h)(0x5C47D253)
 I (C:\Keil_v5\ARM\ARMCC\include\math.h)(0x57F606B6)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x57F606B8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x57F606B8)
-I (../Inc/Driver_Chassis.h)(0x5C4AF2A8)
-I (../Inc/Driver_GuideWheel.h)(0x5C4B0AAD)
+I (../Inc/Driver_Chassis.h)(0x5C4DACD0)
+I (../Inc/Driver_GuideWheel.h)(0x5C4DACD0)
 I (../Inc/Driver_Manipulator.h)(0x5C47D253)
 I (../Inc/Driver_Remote.h)(0x5C4ABE1A)
 I (../Inc/Driver_Sensor.h)(0x5C47D253)
 I (../Inc/SuperviseTask.h)(0x5C486A25)
-I (../Inc/ControlTask.h)(0x5C4AF2A8)
-F (..\Src\Driver_GuideWheel.c)(0x5C4B0AAD)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Drivers/CMSIS/Include -I ..\Src -I ..\Inc -I ..\Src -I ..\MDK-ARM-IC:\Users\92871\Documents\GitHub\工程\robomaster\XDRM_OMNIKNIGHT\MDK-ARM\RTE\_XDRM_OMNIKNIGHT-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F427xx -DUSE_HAL_DRIVER -DSTM32F427xx-o xdrm_omniknight\driver_guidewheel.o --omf_browse xdrm_omniknight\driver_guidewheel.crf --depend xdrm_omniknight\driver_guidewheel.d)
-I (../Inc/Driver_GuideWheel.h)(0x5C4B0AAD)
+I (../Inc/ControlTask.h)(0x5C4C1F9B)
+F (..\Src\Driver_GuideWheel.c)(0x5C4DA196)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Drivers/CMSIS/Include -I ..\Src -I ..\Inc -I ..\Src -I ..\MDK-ARM-IC:\Users\92871\Documents\GitHub\工程\robomaster\XDRM_OMNIKNIGHT\MDK-ARM\RTE\_XDRM_OMNIKNIGHT-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F427xx -DUSE_HAL_DRIVER -DSTM32F427xx-o xdrm_omniknight\driver_guidewheel.o --omf_browse xdrm_omniknight\driver_guidewheel.crf --depend xdrm_omniknight\driver_guidewheel.d)
+I (../Inc/Driver_GuideWheel.h)(0x5C4DACD0)
 I (../Inc/config.h)(0x5C47D253)
 I (../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h)(0x5C485E3A)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x57F606B8)
@@ -1315,8 +1323,11 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x57F606B8)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x57F606B8)
 I (../Inc/tim.h)(0x5C47D253)
 I (../Inc/Driver_Remote.h)(0x5C4ABE1A)
-I (../Inc/Driver_Beltraise.h)(0x5C4AF2A8)
+I (../Inc/Driver_Beltraise.h)(0x5C4DACD0)
 I (../Inc/Driver_Sensor.h)(0x5C47D253)
+I (../Inc/StatusMachine.h)(0x5C4DA196)
+I (../Inc/Driver_Chassis.h)(0x5C4DACD0)
+I (../Inc/Driver_Manipulator.h)(0x5C47D253)
 F (..\Src\Driver_Sensor.c)(0x5C47D254)(--c99 -c --cpu Cortex-M4.fp -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ../Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc -I ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy -I ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F -I ../Drivers/CMSIS/Device/ST/STM32F4xx/Include -I ../Middlewares/Third_Party/FreeRTOS/Source/include -I ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I ../Drivers/CMSIS/Include -I ..\Src -I ..\Inc -I ..\Src -I ..\MDK-ARM-IC:\Users\92871\Documents\GitHub\工程\robomaster\XDRM_OMNIKNIGHT\MDK-ARM\RTE\_XDRM_OMNIKNIGHT-IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0\CMSIS\Include-IC:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-D__UVISION_VERSION="522" -D_RTE_ -DSTM32F427xx -DUSE_HAL_DRIVER -DSTM32F427xx-o xdrm_omniknight\driver_sensor.o --omf_browse xdrm_omniknight\driver_sensor.crf --depend xdrm_omniknight\driver_sensor.d)
 I (../Inc/Driver_Sensor.h)(0x5C47D253)
 I (../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal.h)(0x5C47D253)

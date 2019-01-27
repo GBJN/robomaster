@@ -4,6 +4,7 @@
 #include "Driver_Beltraise.h"
 #include "Driver_Sensor.h"
 #include "math.h"
+#include "StatusMachine.h"
 extern uint32_t count1;
 extern uint32_t count2;
 

@@ -63,3 +63,7 @@ xdrm_omniknight\driver_chassis.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 xdrm_omniknight\driver_chassis.o: ../Inc/PID.h
 xdrm_omniknight\driver_chassis.o: ../Inc/Driver_Remote.h
 xdrm_omniknight\driver_chassis.o: ../Inc/Driver_Sensor.h
+xdrm_omniknight\driver_chassis.o: ../Inc/StatusMachine.h
+xdrm_omniknight\driver_chassis.o: ../Inc/Driver_Beltraise.h
+xdrm_omniknight\driver_chassis.o: ../Inc/Driver_GuideWheel.h
+xdrm_omniknight\driver_chassis.o: ../Inc/Driver_Manipulator.h

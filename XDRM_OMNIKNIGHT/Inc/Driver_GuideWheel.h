@@ -13,12 +13,13 @@ typedef enum
     Normal_Key_GuideWheelMove,
     GuideWheelMove_Stop,
     Auto_Up_Island_GuideWheelMove,
-    Auto_Down_Island_GuideWheelMove,
+    Auto_Down_Island_GuideWheelMove
 }GuideWheelModeTypeDef;
 
 void MotorInit(void);
 void MotorSpeedSet(void);
 void GuideWheel_Control(void);
+extern GuideWheelModeTypeDef GuideWheelMode;
 	
 
 #endif

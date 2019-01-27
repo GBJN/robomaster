@@ -59,7 +59,11 @@ xdrm_omniknight\driver_beltraise.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4x
 xdrm_omniknight\driver_beltraise.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 xdrm_omniknight\driver_beltraise.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 xdrm_omniknight\driver_beltraise.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-xdrm_omniknight\driver_beltraise.o: ../Inc/PID.h
-xdrm_omniknight\driver_beltraise.o: ../Inc/CanBusTask.h
+xdrm_omniknight\driver_beltraise.o: ../Inc/StatusMachine.h
+xdrm_omniknight\driver_beltraise.o: ../Inc/Driver_Chassis.h
+xdrm_omniknight\driver_beltraise.o: ../Inc/Driver_GuideWheel.h
+xdrm_omniknight\driver_beltraise.o: ../Inc/Driver_Manipulator.h
 xdrm_omniknight\driver_beltraise.o: ../Inc/Driver_Remote.h
 xdrm_omniknight\driver_beltraise.o: ../Inc/Driver_Sensor.h
+xdrm_omniknight\driver_beltraise.o: ../Inc/PID.h
+xdrm_omniknight\driver_beltraise.o: ../Inc/CanBusTask.h

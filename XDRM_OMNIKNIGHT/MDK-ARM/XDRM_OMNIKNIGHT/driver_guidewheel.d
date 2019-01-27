@@ -63,3 +63,6 @@ xdrm_omniknight\driver_guidewheel.o: ../Inc/tim.h
 xdrm_omniknight\driver_guidewheel.o: ../Inc/Driver_Remote.h
 xdrm_omniknight\driver_guidewheel.o: ../Inc/Driver_Beltraise.h
 xdrm_omniknight\driver_guidewheel.o: ../Inc/Driver_Sensor.h
+xdrm_omniknight\driver_guidewheel.o: ../Inc/StatusMachine.h
+xdrm_omniknight\driver_guidewheel.o: ../Inc/Driver_Chassis.h
+xdrm_omniknight\driver_guidewheel.o: ../Inc/Driver_Manipulator.h

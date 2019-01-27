@@ -5,7 +5,7 @@
 #include "math.h"
 #include "config.h"
 #include "Driver_Sensor.h"
-
+#include "StatusMachine.h"
 
 #define M_PI  (float)3.1415926535f
 #define Ang2Rad(m)  (m/180.0f*M_PI)
