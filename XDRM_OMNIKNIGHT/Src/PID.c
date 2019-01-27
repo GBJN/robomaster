@@ -33,16 +33,24 @@ void PID_Reset(PID_Regulator_t *pid)
 	pid->err[0]=0;
 	pid->err[1]=0;
 	pid->err[2]=0;
+	pid->err[3]=0;
 	pid->output=0;
 }
 
+
 void PID_Calc(PID_Regulator_t *pid)
 {
-	pid->err[0]=pid->err[1];//上次误差
+	pid->err[3]=pid->err[2];//只有在增量式pid中才用到了上上次误差及err3
+	pid->err[2]=pid->err[1];//上次误差
 	pid->err[1]=pid->ref-pid->fdb;//本次误差
-	pid->err[2]+=pid->err[1];//误差积分
+	pid->err[0]+=pid->err[1];//误差积分
 	VAL_LIMIT(pid->ki,-pid->componentKiMax,pid->componentKiMax);	//抗饱和积分
-	pid->output=pid->kp*pid->err[1]+pid->ki*pid->err[2]+pid->kd*(pid->err[1]-pid->err[0]);	//最后一个是误差微分
+	if(pid->type == POSITION_PID)
+	{
+		pid->output=pid->kp*pid->err[1]+pid->ki*pid->err[2]+pid->kd*(pid->err[1]-pid->err[0]);	//最后一个是误差微分
+	}
+	else
+		pid->output = pid->kp*(pid->err[1]-pid->err[2])+pid->ki*pid->err[1]+pid->kd*(pid->err[1] - 2*pid->err[2]+pid->err[3]);//增量式pid
 	VAL_LIMIT(pid->output,-pid->outputMax,pid->outputMax);
 }
 /**
@@ -59,6 +67,9 @@ float PID_Task(PID_Regulator_t *PID_Stucture, float ref, float fdb)
 	PID_Stucture->Calc(PID_Stucture);
 	return PID_Stucture->output;
 }
+
+
+
 
 
 //网上有说为了抗微小扰动可以在反馈加一个低通滤波，但会让反应减慢

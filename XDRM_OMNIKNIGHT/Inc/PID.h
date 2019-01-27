@@ -5,6 +5,7 @@
 
 
 
+#include "Config.h"
 
 
 #define VAL_LIMIT(val, min, max)\
@@ -57,11 +58,21 @@ else if(val>=max)\
 #define	IMU_POSITION_KI_DEFAULT 0//不可加积分
 #define IMU_POSITION_KD_DEFAULT 0
 
+
+enum
+{
+	POSITION_PID,
+	DELTA_PID,
+};
+
+
+
+
 #define IMU_HEAT_PID_DEFAULT \
 {\
 	0,\
 	0,\
-	{0,0,0},\
+	{0,0,0,0},\
 	IMU_POSITION_KP_DEFAULT,\
 	IMU_POSITION_KI_DEFAULT,\
 	IMU_POSITION_KD_DEFAULT,\
@@ -76,6 +87,7 @@ else if(val>=max)\
 	0,\
 	0,\
 	0,\
+	DELTA_PID,\
 	&PID_Calc,\
 	&PID_Reset,\
 }//如果改了定时器3的预装值，记得或许要改pid输出最大值//还有上面的pid系数最大值也要注意
@@ -94,7 +106,7 @@ else if(val>=max)\
 {\
 	0,\
 	0,\
-	{0,0,0},\
+	{0,0,0,0},\
 	CHASSIS_SPEED_KP_DEFAULTS,\
 	CHASSIS_SPEED_KI_DEFAULTS,\
 	CHASSIS_SPEED_KD_DEFAULTS,\
@@ -109,6 +121,7 @@ else if(val>=max)\
 	0,\
 	0,\
 	0,\
+	POSITION_PID,\
 	&PID_Calc,\
 	&PID_Reset,\
 }
@@ -118,7 +131,7 @@ else if(val>=max)\
 {\
 	0,\
 	0,\
-	{0,0,0},\
+	{0,0,0,0},\
 	CHASSIS_SPEED_KP_DEFAULTS,\
 	CHASSIS_SPEED_KI_DEFAULTS,\
 	CHASSIS_SPEED_KD_DEFAULTS,\
@@ -133,6 +146,7 @@ else if(val>=max)\
 	0,\
 	0,\
 	0,\
+	POSITION_PID,\
 	&PID_Calc,\
 	&PID_Reset,\
 }
@@ -140,7 +154,7 @@ else if(val>=max)\
 {\
 	0,\
 	0,\
-	{0,0,0},\
+	{0,0,0,0},\
 	CHASSIS_ROTATE_KP_DEFAULTS,\
 	CHASSIS_ROTATE_KI_DEFAULTS,\
 	CHASSIS_ROTATE_KD_DEFAULTS,\
@@ -155,6 +169,7 @@ else if(val>=max)\
 	0,\
 	0,\
 	0,\
+	POSITION_PID,\
 	&PID_Calc,\
 	&PID_Reset,\
 }
@@ -166,7 +181,7 @@ typedef __packed struct PID_Regulator_t
 {
 	float ref;
 	float fdb;
-	float err[3];
+	float err[4];
 	float kp;
 	float ki;
 	float kd;
@@ -181,6 +196,7 @@ typedef __packed struct PID_Regulator_t
 	float kp_offset;
 	float ki_offset;
 	float kd_offset;
+	uint8_t type;
 	void (*Calc)(struct PID_Regulator_t *pid);//函数指针
 	void (*Reset)(struct PID_Regulator_t *pid);
 }PID_Regulator_t;
