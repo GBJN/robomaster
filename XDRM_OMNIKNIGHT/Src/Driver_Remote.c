@@ -37,13 +37,13 @@ uint8_t stick1_action(void)
 	S_switch = stick1_change();
 	if(S_switch != 0)
 	{
-			
+	 
 		time_diff_1to3 = xTaskGetTickCount() - timetick2;
 		time_diff_1to2 = xTaskGetTickCount() - timetick1;
 		
 		
 		timetick2 = timetick1;
-		timetick1 = xTaskGetTickCount();//Get_Tim
+		timetick1 = xTaskGetTickCount();
 
 		if(time_diff_1to2<NORMAL_TIME_2)
 		{
@@ -57,15 +57,20 @@ uint8_t stick1_action(void)
 		}
 	 else 
 	 {
-		 stick_store = RC_CtrlData.rc.s1;//若一定时间内未检测到再次跳变，则只变了一次，保存值清空
+		 
 			return ONE_CHANGE;
 	 }
 	}
 	else 
-		return NO_CHANGE;
+//		  abc=xTaskGetTickCount() - timetick1;
+			if((xTaskGetTickCount() - timetick1)>NORMAL_TIME_2)
+			{
+				stick_store = RC_CtrlData.rc.s1;//若一定时间内未检测到再次跳变，则只变了一次，保存值清空
+			}
+			return NO_CHANGE;
+		
+	
 }
-
-
 
 
 /**
