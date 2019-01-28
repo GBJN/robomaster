@@ -27,10 +27,21 @@ Project File Date:  01/23/2019
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 4 (build 422)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'XDRM_OMNIKNIGHT'
-compiling StatusMachine.c...
+compiling Driver_Beltraise.c...
+..\Src\Driver_Beltraise.c(146): warning:  #550-D: variable "RBM_Angle"  was set but never used
+  			static int32_t RBM_Angle = 0;
+..\Src\Driver_Beltraise.c(252): warning:  #550-D: variable "RBM_Angle"  was set but never used
+  			static int32_t RBM_Angle = 0;
+..\Src\Driver_Beltraise.c(288): warning:  #550-D: variable "RBM_Angle"  was set but never used
+  			static int32_t RBM_Angle = 0;
+..\Src\Driver_Beltraise.c(345): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			Can_Send_BM(RBMSpeedPID.output*1.5,LBMSpeedPID.output*1.5,0,0);//不要在这里output加负号
+..\Src\Driver_Beltraise.c(345): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  			Can_Send_BM(RBMSpeedPID.output*1.5,LBMSpeedPID.output*1.5,0,0);//不要在这里output加负号
+..\Src\Driver_Beltraise.c: 5 warnings, 0 errors
 linking...
-Program Size: Code=30932 RO-data=892 RW-data=1076 ZI-data=20500  
-"XDRM_OMNIKNIGHT\XDRM_OMNIKNIGHT.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=30940 RO-data=892 RW-data=1080 ZI-data=20496  
+"XDRM_OMNIKNIGHT\XDRM_OMNIKNIGHT.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
 

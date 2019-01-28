@@ -250,23 +250,32 @@ void CM_Get_SpeedRef_SM(void)
 
 		//case Normal_Key_ChassisMove:{}以后写
 
-		case Auto_Up_Island_ChassisMove:
+		case Chassis_Advance:
 		{
 			ChassisData.ChassisSpeedRef.Y = -250;//
 			if(xTaskGetTickCount() - tick_c_1 > 1000)//2000/3000
 			{
 				ChassisMode = ChassisMove_Stop;
+				if(UpIslandState == Up_Island_ChassisAdvance_First)
+				{
+					UpIslandState = Up_Island_BeltDown_Twice;
+				}
 			}
 		}break;
 
-		case Auto_Down_Island_ChassisMove:
+		case Chassis_Back:
 		{
 			ChassisData.ChassisSpeedRef.Y = 100;
 			if(InfraredState_back == 1 && InfraredState_front == 0)//后方传感器检测到悬空
 			{
-				//BM_AngelGet = 1;
-				//steps_down++;这两句应该不能这样写，以后还要改
-				ChassisMode = ChassisMove_Stop;
+				if(DownIslandState == Down_Island_ChassisBack_First)
+				{
+					DownIslandState = Down_Island_BeltDown_First;
+				}
+				else if(DownIslandState == Down_Island_ChassisBack_First)
+				{
+					DownIslandState = Down_Island_BeltDown_Twice;
+				}
 			}
 		}break;
 

@@ -101,7 +101,7 @@ void MotorSpeedSet_SM(void)
 			__HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_2,GW_Speed);
 		}break;//当时遥控器遥控导轮的bug还没有改过来
 
-		case Auto_Up_Island_GuideWheelMove:
+		case GuideWheel_Advance:
 		{
 			MotorStart();
 			__HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_1,50);
@@ -112,9 +112,17 @@ void MotorSpeedSet_SM(void)
 				MotorStop();
 				GuideWheelMode = GuideWheelMove_Stop;
 			}//一个车的距离
+			if(UpIslandState == Up_Island_GuideWheelAdvance_First)
+			{
+				UpIslandState = Up_Island_BeltUp_First;
+			}
+			else if(UpIslandState == Up_Island_GuideWheelAdvance_Twice)
+			{
+				UpIslandState = Up_Island_BeltUp_Twice;
+			}
 		}break;
 
-		case Auto_Down_Island_GuideWheelMove:
+		case GuideWheel_Back:
 		{
 			MotorStart();
 			MotorBackInit();
@@ -122,9 +130,14 @@ void MotorSpeedSet_SM(void)
 			__HAL_TIM_SetCompare(&htim4,TIM_CHANNEL_2,50);
 			if(InfraredState_back == 1 && InfraredState_front == 1)//后方传感器检测到悬空
 			{
-				MotorStop();
-				//BM_AngelGet = 1;
-				GuideWheelMode = GuideWheelMove_Stop;
+				if(DownIslandState == Down_Island_ChassisBack_First)
+				{
+					DownIslandState = Down_Island_BeltUp_First;
+				}
+				else if(DownIslandState == Down_Island_ChassisBack_Twice)
+				{
+					DownIslandState = Down_Island_BeltUp_Twice;
+				}
 			}
 		}break;
 

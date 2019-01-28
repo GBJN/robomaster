@@ -12,6 +12,8 @@ typedef enum
     Normal_Rc_GuideWheelMove = 0,
     Normal_Key_GuideWheelMove,
     GuideWheelMove_Stop,
+		GuideWheel_Advance,
+		GuideWheel_Back,
     Auto_Up_Island_GuideWheelMove,
     Auto_Down_Island_GuideWheelMove
 }GuideWheelModeTypeDef;

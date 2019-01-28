@@ -6,6 +6,7 @@ WorkState_e 	WorkState;
 WorkState_e		LastWorkState = STOP_STATE;
 CarMoveModeTypeDef CarMoveMode;
 UpIslandStateTypeDef UpIslandState;
+DownIslandStateTypeDef   DownIslandState;
 uint16_t Up_Island_Flag;
 uint16_t Down_Island_Flag;
 extern uint32_t time_tick_1ms;
@@ -182,30 +183,165 @@ void CarMoveFSM(void)
     {
       switch (UpIslandState)
       {
-        case Up_Island_PrePare:
+        case Up_Island_Prepare:
         {
-          UpIslandState = Up_Island_Up_First;
+          UpIslandState = Up_Island_BeltDown_First;
         }break;
 
-        case Up_Island_Up_First:
+        case Up_Island_BeltDown_First://皮带下降时把车给撑起来了
         {
-          BeltMode = Auto_Up_Island_BeltMove;
+          BM_AngelGet = 1;
+          BeltMode = Belt_Down;
           ChassisMode = ChassisMove_Stop;
           GuideWheelMode = GuideWheelMove_Stop;
-          UpIslandState = Up_Island_Advance_First;
-        }
+        }break;
 
-        case Up_Island_Advance_First:
+        case Up_Island_GuideWheelAdvance_First:
         {
           BeltMode = BeltMove_Stop;
           ChassisMode = ChassisMove_Stop;
-          GuideWheelMode = Auto_Up_Island_GuideWheelMove;
-        }
+          GuideWheelMode = GuideWheel_Advance;
+        }break;
+				
+        case Up_Island_BeltUp_First:
+        {
+          BM_AngelGet = 1;
+          BeltMode = Belt_Up;
+          ChassisMode = ChassisMove_Stop;
+          GuideWheelMode = GuideWheelMove_Stop;
+        }break;
+
+        case Up_Island_ChassisAdvance_First:
+        {
+          BeltMode = BeltMove_Stop;
+          ChassisMode = Chassis_Advance;
+          GuideWheelMode = GuideWheelMove_Stop;
+        }break;
+
+        case Up_Island_BeltDown_Twice:
+        {
+          BM_AngelGet = 1;
+          BeltMode = Belt_Down;
+          ChassisMode = ChassisMove_Stop;
+          GuideWheelMode = GuideWheelMove_Stop;
+        }break;
+
+        case Up_Island_GuideWheelAdvance_Twice:
+        {
+          BeltMode = BeltMove_Stop;
+          ChassisMode = ChassisMove_Stop;
+          GuideWheelMode = GuideWheel_Advance;
+        }break;
+				
+        case Up_Island_BeltUp_Twice:
+        {
+          BM_AngelGet = 1;
+          BeltMode = Belt_Up;
+          ChassisMode = ChassisMove_Stop;
+          GuideWheelMode = GuideWheelMove_Stop;
+        }break;
+
+        case Up_Island_Stop:
+        {
+          BeltMode = BeltMove_Stop;
+          ChassisMode = ChassisMove_Stop;
+          GuideWheelMode = GuideWheelMove_Stop;
+        }break;
+
         default:
-          break;
+        {
+          BeltMode = BeltMove_Stop;
+          ChassisMode = ChassisMove_Stop;
+          GuideWheelMode = GuideWheelMove_Stop;
+        }break;
       }
     }
 
+    case Auto_Down_Island_Mode:
+    {
+      switch (DownIslandState)
+      {
+        case Down_Island_Prepare:
+        {
+          DownIslandState = Down_Island_ChassisBack_First;
+        }break;
+        
+        case Down_Island_ChassisBack_First:
+        {
+          BeltMode = BeltMove_Stop;
+          ChassisMode = Chassis_Back;
+          GuideWheelMode = GuideWheelMove_Stop;
+        }break;
+
+        case Down_Island_BeltDown_First:
+        {
+          BM_AngelGet = 1;
+          BeltMode = Belt_Down;
+          ChassisMode = ChassisMove_Stop;
+          GuideWheelMode = GuideWheelMove_Stop;
+        }break;
+
+        case Down_Island_GuideWheelBack_First:
+        {
+          BeltMode = BeltMove_Stop;
+          ChassisMode = ChassisMove_Stop;
+          GuideWheelMode = GuideWheel_Back;
+        }break;
+
+        case Down_Island_BeltUp_First:
+        {
+          BM_AngelGet = 1;
+          BeltMode = Belt_Up;
+          ChassisMode = ChassisMove_Stop;
+          GuideWheelMode = GuideWheelMove_Stop;
+        }break;
+
+        case Down_Island_ChassisBack_Twice:
+        {
+          BeltMode = BeltMove_Stop;
+          ChassisMode = Chassis_Back;
+          GuideWheelMode = GuideWheelMove_Stop;
+        }break;
+
+        case Down_Island_BeltDown_Twice:
+        {
+          BM_AngelGet = 1;
+          BeltMode = Belt_Down;
+          ChassisMode = ChassisMove_Stop;
+          GuideWheelMode = GuideWheelMove_Stop;
+        }break;
+
+
+        case Down_Island_GuideWheelBack_Twice:
+        {
+          BeltMode = BeltMove_Stop;
+          ChassisMode = ChassisMove_Stop;
+          GuideWheelMode = GuideWheel_Back;
+        }break;
+
+        case Down_Island_BeltUp_Twice:
+        {
+          BM_AngelGet = 1;
+          BeltMode = Belt_Up;
+          ChassisMode = ChassisMove_Stop;
+          GuideWheelMode = GuideWheelMove_Stop;
+        }break;
+      
+        case Down_Island_stop:
+        {
+          BeltMode = BeltMove_Stop;
+          ChassisMode = ChassisMove_Stop;
+          GuideWheelMode = GuideWheelMove_Stop;
+        }break;
+
+        default:
+        {
+          BeltMode = BeltMove_Stop;
+          ChassisMode = ChassisMove_Stop;
+          GuideWheelMode = GuideWheelMove_Stop;
+        }break;
+      }
+    }
     default:
     {
       BeltMode = BeltMove_Stop;
@@ -223,7 +359,8 @@ void UpIsland_Init(void)
   BeltMode = BeltMove_Stop;
   Up_Island_Flag = 0;
   Down_Island_Flag = 0;
-  UpIslandState = Up_Island_PrePare;
+  UpIslandState = Up_Island_Prepare;
+  DownIslandState = Down_Island_Prepare;
 }
 
 void StatusMachine_Init(void)

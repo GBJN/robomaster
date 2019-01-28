@@ -10,11 +10,13 @@
 
 typedef enum
 {
-    Normal_Rc_BeltMove,
-    Normal_Key_BeltMove,
-    BeltMove_Stop,
-    Auto_Up_Island_BeltMove,
-    Auto_Down_Island_BeltMove
+  Normal_Rc_BeltMove,
+  Normal_Key_BeltMove,
+  BeltMove_Stop,
+	Belt_Up,
+	Belt_Down,
+  Auto_Up_Island_BeltMove,
+  Auto_Down_Island_BeltMove
 }BeltModeTypeDef;
 
 

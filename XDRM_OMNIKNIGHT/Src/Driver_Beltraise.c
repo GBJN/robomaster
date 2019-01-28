@@ -246,10 +246,11 @@ void BM_Get_SpeedRef_SM(void)
 	
 		//case Normal_Key_BeltMove{}рт╨Стып╢
 
-		case Auto_Up_Island_BeltMove:
+		case Belt_Up:
 		{
 			static int32_t LBM_Angle = 0;
 			static int32_t RBM_Angle = 0;
+			
 			BeltMotorSpeedRef[0] = -raise_speed;//250
 			BeltMotorSpeedRef[1] = raise_speed;
 			if(BM_AngelGet == 1)
@@ -262,11 +263,26 @@ void BM_Get_SpeedRef_SM(void)
 			{
 				BeltMotorSpeedRef[0] = 0;
 				BeltMotorSpeedRef[1] = 0;
-				Back_C_flag = 1;
+				if(UpIslandState == Up_Island_BeltUp_First) 
+				{
+					UpIslandState = Up_Island_ChassisAdvance_First;
+				}
+				else if(UpIslandState == Up_Island_BeltUp_Twice) 
+				{
+					UpIslandState = Up_Island_Stop;
+				}
+				else if(DownIslandState == Down_Island_BeltUp_First)
+				{
+					DownIslandState = Down_Island_ChassisBack_Twice;
+				}
+				else if(DownIslandState == Down_Island_BeltUp_Twice)
+				{
+					DownIslandState = Down_Island_stop; 
+				}
 			}
 		}break;
 
-		case Auto_Down_Island_BeltMove:
+		case Belt_Down:
 		{
 			static int32_t LBM_Angle = 0;
 			static int32_t RBM_Angle = 0;
@@ -282,7 +298,23 @@ void BM_Get_SpeedRef_SM(void)
 			{
 				BeltMotorSpeedRef[0] = 100;
 				BeltMotorSpeedRef[1] = -100;
-				Back_GW_flag = 1;
+				if (UpIslandState == Up_Island_BeltDown_First) 
+				{
+					UpIslandState = Up_Island_GuideWheelAdvance_First;
+				}
+				else if(UpIslandState == Up_Island_BeltDown_Twice)
+				{
+					UpIslandState = Up_Island_GuideWheelAdvance_Twice;
+				}
+				else if(DownIslandState == Down_Island_BeltDown_First)
+				{
+					DownIslandState = Down_Island_GuideWheelBack_First;
+				}
+				else if(DownIslandState == Down_Island_BeltDown_Twice)
+				{
+					DownIslandState = Down_Island_GuideWheelBack_Twice;
+				}
+				
 			}
 		}break;
 
