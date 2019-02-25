@@ -89,7 +89,13 @@ void MX_FREERTOS_Init(void);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-
+int8_t g1 = 0;
+	int8_t h1 = 0;
+	int8_t i1 = 0;
+	int8_t j1 = 0;
+	int8_t k1 = 0;
+	int8_t l1 = 0;
+	int8_t m1 = 0;
 
 /* USER CODE END 0 */
 
@@ -132,6 +138,22 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
 	//HAL_UART_Receive_DMA(&huart2,UART2_RXBUFF,18);
+	float g = -1.3;
+	float h = -1.7;
+	float i = -0.3;
+	float j = -0.9;
+	float k = 0.3;
+	float l = 0.9;
+	float m = 1.1;
+	
+	 g1 = (int8_t)g;
+	 h1 = (int8_t)h;
+	 i1 = (int8_t)i;
+	 j1 = (int8_t)j;
+	 k1 = (int8_t)k;
+	 l1 = (int8_t)l;
+ m1 = (int8_t)m;
+	
 	
   /* USER CODE END 2 */
 

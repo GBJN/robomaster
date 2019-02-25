@@ -63,6 +63,8 @@ enum
 {
 	POSITION_PID,
 	DELTA_PID,
+	VAGUE_PID,
+	OTHER,
 };
 
 
@@ -79,28 +81,17 @@ enum
 	0,\
 	0,\
 	0,\
-	400,\
-	6,\
-	10,\
-	0,\
+	2500,\
+	2500,\
 	2500,\
 	0,\
-	0,\
+	2500,\
 	0,\
 	DELTA_PID,\
 	&PID_Calc,\
 	&PID_Reset,\
 }//如果改了定时器3的预装值，记得或许要改pid输出最大值//还有上面的pid系数最大值也要注意
 
-
-
-#define PID_CALI_DEFAULT  \
-{\
-	0,\
-	0,\
-	0,\
-	0,\
-}
 
 #define CHASSIS_MOTOR_SPEED_PID_DEFAULT \
 {\
@@ -113,13 +104,11 @@ enum
 	0,\
 	0,\
 	0,\
-	4900,\
-	1000,\
-	1500,\
-	0,\
+	4000,\
+	4000,\
 	4000,\
 	0,\
-	0,\
+	4000,\
 	0,\
 	POSITION_PID,\
 	&PID_Calc,\
@@ -138,13 +127,11 @@ enum
 	0,\
 	0,\
 	0,\
-	40,\
-	0.005,\
-	20,\
-	0,\
+	13000,\
+	13000,\
 	13000,\
 	0,\
-	0,\
+	13000,\
 	0,\
 	POSITION_PID,\
 	&PID_Calc,\
@@ -161,13 +148,11 @@ enum
 	0,\
 	0,\
 	0,\
-	4900,\
-	1000,\
-	1500,\
-	0,\
+	600,\
+	600,\
 	600,\
 	0,\
-	0,\
+	600,\
 	0,\
 	POSITION_PID,\
 	&PID_Calc,\
@@ -177,7 +162,7 @@ enum
 
 
 
-typedef __packed struct PID_Regulator_t
+typedef __packed struct PID_Regulator_t//这个有点奇怪。。是因为下面有函数指针！所以是为什么呢
 {
 	float ref;
 	float fdb;
@@ -185,22 +170,19 @@ typedef __packed struct PID_Regulator_t
 	float kp;
 	float ki;
 	float kd;
-	float componentKp;
-	float componentKi;
-	float componentKd;
-	float componentKpMax;
-	float componentKiMax;
-	float componentKdMax;
+	float output_kp;
+	float output_ki;
+	float output_kd;
+	float output_kpMax;//每个pid默认的最大输出再做考虑
+	float output_kiMax;
+	float output_kdMax;
 	float output;
 	float outputMax;
-	float kp_offset;
-	float ki_offset;
-	float kd_offset;
-	uint8_t type;
+	float index;
+  uint8_t type;
 	void (*Calc)(struct PID_Regulator_t *pid);//函数指针
 	void (*Reset)(struct PID_Regulator_t *pid);
 }PID_Regulator_t;
-
 
 extern PID_Regulator_t CMRotatePID; 
 extern PID_Regulator_t CM1SpeedPID;
