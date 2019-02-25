@@ -167,6 +167,8 @@ void PID_Calc(PID_Regulator_t *pid)
 		if(pid->err[1]<0)
 		{
 			
+			
+			
 			pid->err[1] = 0;//kp
 		}
 		
