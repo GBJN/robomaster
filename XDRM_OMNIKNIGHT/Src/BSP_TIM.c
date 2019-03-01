@@ -48,7 +48,8 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "tim.h"
+#include "BSP_TIM.h"
+
 
 /* USER CODE BEGIN 0 */
 

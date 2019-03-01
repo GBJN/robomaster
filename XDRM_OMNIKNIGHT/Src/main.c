@@ -138,22 +138,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
 	//HAL_UART_Receive_DMA(&huart2,UART2_RXBUFF,18);
-	float g = -1.3;
-	float h = -1.7;
-	float i = -0.3;
-	float j = -0.9;
-	float k = 0.3;
-	float l = 0.9;
-	float m = 1.1;
-	
-	 g1 = (int8_t)g;
-	 h1 = (int8_t)h;
-	 i1 = (int8_t)i;
-	 j1 = (int8_t)j;
-	 k1 = (int8_t)k;
-	 l1 = (int8_t)l;
- m1 = (int8_t)m;
-	
+
 	
   /* USER CODE END 2 */
 
@@ -169,12 +154,11 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-	//要写的有1、鼠标偏移2、取弹逻辑3、取弹具体实施
-	//pid优化：1.死区2.增量式3.模糊
-	//陀螺仪零飘
-	//
+	//要写的有1、鼠标偏移2、取弹逻辑
 		
 	//分为四种任务，分别是数据接收，数据处理，数据发送，和状态机
+	//1.状态机 2.数据接收处理发送（上位机） 3.主控制线程 4.帧率检测、栈检测线程	
+		
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */

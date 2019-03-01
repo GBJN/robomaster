@@ -48,9 +48,11 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "can.h"
+#include "BSP_CAN.h"
 
-#include "gpio.h"
+
+#include "BSP_GPIO.h"
+
 
 /* USER CODE BEGIN 0 */
 

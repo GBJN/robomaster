@@ -48,10 +48,13 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "usart.h"
+#include "BSP_USART.h"
 
-#include "gpio.h"
-#include "dma.h"
+
+#include "BSP_GPIO.h"
+
+#include "BSP_DMA.h"
+
 
 /* USER CODE BEGIN 0 */
 uint8_t UART2_RXBUFF[UART2_RXBUFF_SIZE];

@@ -377,7 +377,7 @@
       </TargetOption>
       <Groups>
         <Group>
-          <GroupName>Application/User</GroupName>
+          <GroupName>Task/User</GroupName>
           <Files>
             <File>
               <FileName>main.c</FileName>
@@ -385,59 +385,9 @@
               <FilePath>../Src/main.c</FilePath>
             </File>
             <File>
-              <FileName>gpio.c</FileName>
+              <FileName>StatusMachine.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../Src/gpio.c</FilePath>
-            </File>
-            <File>
-              <FileName>adc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Src/adc.c</FilePath>
-            </File>
-            <File>
-              <FileName>can.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Src/can.c</FilePath>
-            </File>
-            <File>
-              <FileName>crc.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Src/crc.c</FilePath>
-            </File>
-            <File>
-              <FileName>dac.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Src/dac.c</FilePath>
-            </File>
-            <File>
-              <FileName>dma.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Src/dma.c</FilePath>
-            </File>
-            <File>
-              <FileName>freertos.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Src/freertos.c</FilePath>
-            </File>
-            <File>
-              <FileName>spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Src/spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>i2c.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Src/i2c.c</FilePath>
-            </File>
-            <File>
-              <FileName>tim.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Src/tim.c</FilePath>
-            </File>
-            <File>
-              <FileName>usart.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>../Src/usart.c</FilePath>
+              <FilePath>..\Src\StatusMachine.c</FilePath>
             </File>
             <File>
               <FileName>stm32f4xx_it.c</FileName>
@@ -445,19 +395,39 @@
               <FilePath>../Src/stm32f4xx_it.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_hal_msp.c</FileName>
+              <FileName>ControlTask.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../Src/stm32f4xx_hal_msp.c</FilePath>
+              <FilePath>..\Src\ControlTask.c</FilePath>
             </File>
             <File>
-              <FileName>stm32f4xx_hal_timebase_TIM.c</FileName>
+              <FileName>SuperviseTask.c</FileName>
               <FileType>1</FileType>
-              <FilePath>../Src/stm32f4xx_hal_timebase_TIM.c</FilePath>
+              <FilePath>..\Src\SuperviseTask.c</FilePath>
             </File>
             <File>
-              <FileName>CanBusTask.c</FileName>
+              <FileName>freertos.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Src\CanBusTask.c</FilePath>
+              <FilePath>../Src/freertos.c</FilePath>
+            </File>
+            <File>
+              <FileName>startup_stm32f427xx.s</FileName>
+              <FileType>2</FileType>
+              <FilePath>.\startup_stm32f427xx.s</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Driver_Lib/User</GroupName>
+          <Files>
+            <File>
+              <FileName>DriverLib_PID.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\DriverLib_PID.c</FilePath>
+            </File>
+            <File>
+              <FileName>DriverLib_Ramp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\DriverLib_Ramp.c</FilePath>
             </File>
             <File>
               <FileName>BSP_Data.c</FileName>
@@ -465,9 +435,24 @@
               <FilePath>..\Src\BSP_Data.c</FilePath>
             </File>
             <File>
-              <FileName>startup_stm32f427xx.s</FileName>
-              <FileType>2</FileType>
-              <FilePath>.\startup_stm32f427xx.s</FilePath>
+              <FileName>DriverLib_Filter.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\DriverLib_Filter.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Driver/User</GroupName>
+          <Files>
+            <File>
+              <FileName>CanBusTask.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\CanBusTask.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_hal_msp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Src/stm32f4xx_hal_msp.c</FilePath>
             </File>
             <File>
               <FileName>Driver_Beltraise.c</FileName>
@@ -490,26 +475,6 @@
               <FilePath>..\Src\Driver_Remote.c</FilePath>
             </File>
             <File>
-              <FileName>Ramp.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\Ramp.c</FilePath>
-            </File>
-            <File>
-              <FileName>PID.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\PID.c</FilePath>
-            </File>
-            <File>
-              <FileName>ControlTask.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\ControlTask.c</FilePath>
-            </File>
-            <File>
-              <FileName>StatusMachine.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\StatusMachine.c</FilePath>
-            </File>
-            <File>
               <FileName>Driver_GuideWheel.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\Driver_GuideWheel.c</FilePath>
@@ -524,10 +489,80 @@
               <FileType>1</FileType>
               <FilePath>..\Src\Driver_Manipulator.c</FilePath>
             </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>BSP/User</GroupName>
+          <Files>
             <File>
-              <FileName>SuperviseTask.c</FileName>
+              <FileName>BSP.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\Src\SuperviseTask.c</FilePath>
+              <FilePath>..\Src\BSP.c</FilePath>
+            </File>
+            <File>
+              <FileName>BSP_ADC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\BSP_ADC.c</FilePath>
+            </File>
+            <File>
+              <FileName>BSP_CAN.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\BSP_CAN.c</FilePath>
+            </File>
+            <File>
+              <FileName>BSP_CRC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\BSP_CRC.c</FilePath>
+            </File>
+            <File>
+              <FileName>BSP_DAC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\BSP_DAC.c</FilePath>
+            </File>
+            <File>
+              <FileName>BSP_DMA.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\BSP_DMA.c</FilePath>
+            </File>
+            <File>
+              <FileName>BSP_GPIO.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\BSP_GPIO.c</FilePath>
+            </File>
+            <File>
+              <FileName>BSP_I2C.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\BSP_I2C.c</FilePath>
+            </File>
+            <File>
+              <FileName>BSP_SPI.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\BSP_SPI.c</FilePath>
+            </File>
+            <File>
+              <FileName>BSP_TIM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\BSP_TIM.c</FilePath>
+            </File>
+            <File>
+              <FileName>BSP_USART.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\BSP_USART.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f4xx_hal_timebase_TIM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Src/stm32f4xx_hal_timebase_TIM.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Drivers/CMSIS</GroupName>
+          <Files>
+            <File>
+              <FileName>system_stm32f4xx.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..//Src/system_stm32f4xx.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -653,16 +688,6 @@
               <FileName>stm32f4xx_hal.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal.c</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>Drivers/CMSIS</GroupName>
-          <Files>
-            <File>
-              <FileName>system_stm32f4xx.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..//Src/system_stm32f4xx.c</FilePath>
             </File>
           </Files>
         </Group>

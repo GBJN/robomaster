@@ -1,8 +1,8 @@
 /**
   ******************************************************************************
-  * File Name          : DAC.c
+  * File Name          : ADC.c
   * Description        : This file provides code for the configuration
-  *                      of the DAC instances.
+  *                      of the ADC instances.
   ******************************************************************************
   * This notice applies to any and all portions of this file
   * that are not between comment pairs USER CODE BEGIN and
@@ -48,85 +48,100 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "dac.h"
+////
+////
+////test
+#include "BSP_ADC.h"
 
-#include "gpio.h"
+#include "BSP_GPIO.h"
 
 /* USER CODE BEGIN 0 */
 
 /* USER CODE END 0 */
 
-DAC_HandleTypeDef hdac;
+ADC_HandleTypeDef hadc1;
 
-/* DAC init function */
-void MX_DAC_Init(void)
+/* ADC1 init function */
+void MX_ADC1_Init(void)
 {
-  DAC_ChannelConfTypeDef sConfig;
+  ADC_ChannelConfTypeDef sConfig;
 
-    /**DAC Initialization 
+    /**Configure the global features of the ADC (Clock, Resolution, Data Alignment and number of conversion) 
     */
-  hdac.Instance = DAC;
-  if (HAL_DAC_Init(&hdac) != HAL_OK)
+  hadc1.Instance = ADC1;
+  hadc1.Init.ClockPrescaler = ADC_CLOCK_SYNC_PCLK_DIV4;
+  hadc1.Init.Resolution = ADC_RESOLUTION_12B;
+  hadc1.Init.ScanConvMode = DISABLE;
+  hadc1.Init.ContinuousConvMode = DISABLE;
+  hadc1.Init.DiscontinuousConvMode = DISABLE;
+  hadc1.Init.ExternalTrigConvEdge = ADC_EXTERNALTRIGCONVEDGE_NONE;
+  hadc1.Init.ExternalTrigConv = ADC_SOFTWARE_START;
+  hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
+  hadc1.Init.NbrOfConversion = 1;
+  hadc1.Init.DMAContinuousRequests = DISABLE;
+  hadc1.Init.EOCSelection = ADC_EOC_SINGLE_CONV;
+  if (HAL_ADC_Init(&hadc1) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
 
-    /**DAC channel OUT2 config 
+    /**Configure for the selected ADC regular channel its corresponding rank in the sequencer and its sample time. 
     */
-  sConfig.DAC_Trigger = DAC_TRIGGER_NONE;
-  sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_ENABLE;
-  if (HAL_DAC_ConfigChannel(&hdac, &sConfig, DAC_CHANNEL_2) != HAL_OK)
+  sConfig.Channel = ADC_CHANNEL_0;
+  sConfig.Rank = 1;
+  sConfig.SamplingTime = ADC_SAMPLETIME_3CYCLES;
+  if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
 
 }
 
-void HAL_DAC_MspInit(DAC_HandleTypeDef* dacHandle)
+void HAL_ADC_MspInit(ADC_HandleTypeDef* adcHandle)
 {
 
   GPIO_InitTypeDef GPIO_InitStruct;
-  if(dacHandle->Instance==DAC)
+  if(adcHandle->Instance==ADC1)
   {
-  /* USER CODE BEGIN DAC_MspInit 0 */
+  /* USER CODE BEGIN ADC1_MspInit 0 */
 
-  /* USER CODE END DAC_MspInit 0 */
-    /* DAC clock enable */
-    __HAL_RCC_DAC_CLK_ENABLE();
+  /* USER CODE END ADC1_MspInit 0 */
+    /* ADC1 clock enable */
+    __HAL_RCC_ADC1_CLK_ENABLE();
   
-    /**DAC GPIO Configuration    
-    PA5     ------> DAC_OUT2 
+    /**ADC1 GPIO Configuration    
+    PA0/WKUP     ------> ADC1_IN0 
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_5;
+    GPIO_InitStruct.Pin = GPIO_PIN_0;
     GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
     HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /* USER CODE BEGIN DAC_MspInit 1 */
+  /* USER CODE BEGIN ADC1_MspInit 1 */
 
-  /* USER CODE END DAC_MspInit 1 */
+  /* USER CODE END ADC1_MspInit 1 */
   }
 }
 
-void HAL_DAC_MspDeInit(DAC_HandleTypeDef* dacHandle)
+void HAL_ADC_MspDeInit(ADC_HandleTypeDef* adcHandle)
 {
 
-  if(dacHandle->Instance==DAC)
+  if(adcHandle->Instance==ADC1)
   {
-  /* USER CODE BEGIN DAC_MspDeInit 0 */
+  /* USER CODE BEGIN ADC1_MspDeInit 0 */
 
-  /* USER CODE END DAC_MspDeInit 0 */
+  /* USER CODE END ADC1_MspDeInit 0 */
     /* Peripheral clock disable */
-    __HAL_RCC_DAC_CLK_DISABLE();
+    __HAL_RCC_ADC1_CLK_DISABLE();
   
-    /**DAC GPIO Configuration    
-    PA5     ------> DAC_OUT2 
+    /**ADC1 GPIO Configuration    
+    PA0/WKUP     ------> ADC1_IN0 
     */
-    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_5);
+    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_0);
 
-  /* USER CODE BEGIN DAC_MspDeInit 1 */
+  /* USER CODE BEGIN ADC1_MspDeInit 1 */
 
-  /* USER CODE END DAC_MspDeInit 1 */
+  /* USER CODE END ADC1_MspDeInit 1 */
   }
 } 
 

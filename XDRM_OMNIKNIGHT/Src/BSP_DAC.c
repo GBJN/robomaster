@@ -1,8 +1,8 @@
 /**
   ******************************************************************************
-  * File Name          : SPI.c
+  * File Name          : DAC.c
   * Description        : This file provides code for the configuration
-  *                      of the SPI instances.
+  *                      of the DAC instances.
   ******************************************************************************
   * This notice applies to any and all portions of this file
   * that are not between comment pairs USER CODE BEGIN and
@@ -48,90 +48,84 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "spi.h"
+#include "BSP_DAC.h"
 
-#include "gpio.h"
-
+#include "BSP_GPIO.h"
 /* USER CODE BEGIN 0 */
 
 /* USER CODE END 0 */
 
-SPI_HandleTypeDef hspi4;
+DAC_HandleTypeDef hdac;
 
-/* SPI4 init function */
-void MX_SPI4_Init(void)
+/* DAC init function */
+void MX_DAC_Init(void)
 {
+  DAC_ChannelConfTypeDef sConfig;
 
-  hspi4.Instance = SPI4;
-  hspi4.Init.Mode = SPI_MODE_MASTER;
-  hspi4.Init.Direction = SPI_DIRECTION_2LINES;
-  hspi4.Init.DataSize = SPI_DATASIZE_8BIT;
-  hspi4.Init.CLKPolarity = SPI_POLARITY_LOW;
-  hspi4.Init.CLKPhase = SPI_PHASE_1EDGE;
-  hspi4.Init.NSS = SPI_NSS_SOFT;
-  hspi4.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
-  hspi4.Init.FirstBit = SPI_FIRSTBIT_MSB;
-  hspi4.Init.TIMode = SPI_TIMODE_DISABLE;
-  hspi4.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
-  hspi4.Init.CRCPolynomial = 10;
-  if (HAL_SPI_Init(&hspi4) != HAL_OK)
+    /**DAC Initialization 
+    */
+  hdac.Instance = DAC;
+  if (HAL_DAC_Init(&hdac) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
+    /**DAC channel OUT2 config 
+    */
+  sConfig.DAC_Trigger = DAC_TRIGGER_NONE;
+  sConfig.DAC_OutputBuffer = DAC_OUTPUTBUFFER_ENABLE;
+  if (HAL_DAC_ConfigChannel(&hdac, &sConfig, DAC_CHANNEL_2) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
   }
 
 }
 
-void HAL_SPI_MspInit(SPI_HandleTypeDef* spiHandle)
+void HAL_DAC_MspInit(DAC_HandleTypeDef* dacHandle)
 {
 
   GPIO_InitTypeDef GPIO_InitStruct;
-  if(spiHandle->Instance==SPI4)
+  if(dacHandle->Instance==DAC)
   {
-  /* USER CODE BEGIN SPI4_MspInit 0 */
+  /* USER CODE BEGIN DAC_MspInit 0 */
 
-  /* USER CODE END SPI4_MspInit 0 */
-    /* SPI4 clock enable */
-    __HAL_RCC_SPI4_CLK_ENABLE();
+  /* USER CODE END DAC_MspInit 0 */
+    /* DAC clock enable */
+    __HAL_RCC_DAC_CLK_ENABLE();
   
-    /**SPI4 GPIO Configuration    
-    PE2     ------> SPI4_SCK
-    PE5     ------> SPI4_MISO
-    PE6     ------> SPI4_MOSI 
+    /**DAC GPIO Configuration    
+    PA5     ------> DAC_OUT2 
     */
-    GPIO_InitStruct.Pin = GPIO_PIN_2|GPIO_PIN_5|GPIO_PIN_6;
-    GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+    GPIO_InitStruct.Pin = GPIO_PIN_5;
+    GPIO_InitStruct.Mode = GPIO_MODE_ANALOG;
     GPIO_InitStruct.Pull = GPIO_NOPULL;
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
-    GPIO_InitStruct.Alternate = GPIO_AF5_SPI4;
-    HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /* USER CODE BEGIN SPI4_MspInit 1 */
+  /* USER CODE BEGIN DAC_MspInit 1 */
 
-  /* USER CODE END SPI4_MspInit 1 */
+  /* USER CODE END DAC_MspInit 1 */
   }
 }
 
-void HAL_SPI_MspDeInit(SPI_HandleTypeDef* spiHandle)
+void HAL_DAC_MspDeInit(DAC_HandleTypeDef* dacHandle)
 {
 
-  if(spiHandle->Instance==SPI4)
+  if(dacHandle->Instance==DAC)
   {
-  /* USER CODE BEGIN SPI4_MspDeInit 0 */
+  /* USER CODE BEGIN DAC_MspDeInit 0 */
 
-  /* USER CODE END SPI4_MspDeInit 0 */
+  /* USER CODE END DAC_MspDeInit 0 */
     /* Peripheral clock disable */
-    __HAL_RCC_SPI4_CLK_DISABLE();
+    __HAL_RCC_DAC_CLK_DISABLE();
   
-    /**SPI4 GPIO Configuration    
-    PE2     ------> SPI4_SCK
-    PE5     ------> SPI4_MISO
-    PE6     ------> SPI4_MOSI 
+    /**DAC GPIO Configuration    
+    PA5     ------> DAC_OUT2 
     */
-    HAL_GPIO_DeInit(GPIOE, GPIO_PIN_2|GPIO_PIN_5|GPIO_PIN_6);
+    HAL_GPIO_DeInit(GPIOA, GPIO_PIN_5);
 
-  /* USER CODE BEGIN SPI4_MspDeInit 1 */
+  /* USER CODE BEGIN DAC_MspDeInit 1 */
 
-  /* USER CODE END SPI4_MspDeInit 1 */
+  /* USER CODE END DAC_MspDeInit 1 */
   }
 } 
 
