@@ -61,6 +61,6 @@ xdrm_omniknight\canbustask.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\string.h
 xdrm_omniknight\canbustask.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\stdlib.h
 xdrm_omniknight\canbustask.o: ../Inc/SuperviseTask.h
 xdrm_omniknight\canbustask.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
-xdrm_omniknight\canbustask.o: ../Inc/can.h
+xdrm_omniknight\canbustask.o: ../Inc/BSP_CAN.h
 xdrm_omniknight\canbustask.o: ../Inc/BSP_Data.h
-xdrm_omniknight\canbustask.o: ../Inc/PID.h
+xdrm_omniknight\canbustask.o: ../Inc/DriverLib_PID.h

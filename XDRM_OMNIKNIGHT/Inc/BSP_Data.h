@@ -6,7 +6,7 @@
 #include "stm32f4xx_hal.h"
 #include "config.h"
 
-#include "can.h"//这个.h本不应该写在这里的，但是can的那些结构体想不出放的地方了，就放这里
+#include "BSP_CAN.h"//这个.h本不应该写在这里的，但是can的那些结构体想不出放的地方了，就放这里
 
 typedef struct _circle_buffer{
     uint16_t head_pos;             //缓冲区头部位置

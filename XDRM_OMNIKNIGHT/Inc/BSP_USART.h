@@ -72,6 +72,7 @@ extern void _Error_Handler(char *, int);
 
 void MX_USART2_UART_Init(void);
 void MX_USART1_UART_Init(void);
+void MX_USART6_UART_Init(void);
 
 /* USER CODE BEGIN Prototypes */
 
@@ -82,6 +83,8 @@ extern uint8_t UART2_RXBUFF[UART2_RXBUFF_SIZE];
 #define UART1_RXBUFF_SIZE 100
 extern uint8_t UART1_RXBUFF[UART1_RXBUFF_SIZE];
 
+#define UART6_RXBUFF_SIZE 100////
+extern uint8_t UART6_RXBUFF[UART6_RXBUFF_SIZE];
 
 /* USER CODE END Prototypes */
 

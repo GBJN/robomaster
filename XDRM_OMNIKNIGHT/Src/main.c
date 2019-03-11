@@ -50,23 +50,16 @@
 #include "main.h"
 #include "stm32f4xx_hal.h"
 #include "cmsis_os.h"
-#include "adc.h"
-#include "can.h"
-#include "crc.h"
-#include "dac.h"
-#include "dma.h"
-#include "i2c.h"
-#include "spi.h"
-#include "tim.h"
-#include "usart.h"
-#include "gpio.h"
 
 /* USER CODE BEGIN Includes */
 
 
 #include "config.h"
-#include "usart.h"
+
 #include "Driver_GuideWheel.h"
+#include "BSP.h"
+
+
 
 
 
@@ -126,14 +119,8 @@ int main(void)
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
-  MX_GPIO_Init();
-  MX_DMA_Init();
-  MX_CAN1_Init();
-	MX_USART1_UART_Init();
-  MX_TIM4_Init();
+	BSP_Init();
 
-//  MX_SPI4_Init();
-  MX_TIM3_Init();
 	MotorInit();
   /* USER CODE BEGIN 2 */
 

@@ -442,13 +442,23 @@
           </Files>
         </Group>
         <Group>
-          <GroupName>Driver/User</GroupName>
+          <GroupName>Data_Stream/User</GroupName>
           <Files>
             <File>
               <FileName>CanBusTask.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\CanBusTask.c</FilePath>
             </File>
+            <File>
+              <FileName>Data_Judge.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\Data_Judge.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Driver/User</GroupName>
+          <Files>
             <File>
               <FileName>stm32f4xx_hal_msp.c</FileName>
               <FileType>1</FileType>
@@ -543,6 +553,11 @@
               <FileName>BSP_TIM.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\BSP_TIM.c</FilePath>
+            </File>
+            <File>
+              <FileName>BSP_NVIC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\BSP_NVIC.c</FilePath>
             </File>
             <File>
               <FileName>BSP_USART.c</FileName>

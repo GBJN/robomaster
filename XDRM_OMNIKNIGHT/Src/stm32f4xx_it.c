@@ -38,7 +38,7 @@
 
 /* USER CODE BEGIN 0 */
 
-#include "usart.h"
+#include "BSP_USART.h"
 #include "BSP_Data.h"
 #include "CanBusTask.h"
 #include "Driver_Remote.h"
@@ -51,7 +51,9 @@ extern DMA_HandleTypeDef hdma_usart2_rx;
 extern UART_HandleTypeDef huart2;
 
 extern DMA_HandleTypeDef hdma_usart1_rx;
+extern DMA_HandleTypeDef hdma_usart6_rx;
 extern UART_HandleTypeDef huart1;
+extern UART_HandleTypeDef huart6;
 
 extern TIM_HandleTypeDef htim2;
 
@@ -282,6 +284,28 @@ void USART2_IRQHandler(void)
   /* USER CODE END USART2_IRQn 1 */
 }
 
+void USART6_IRQHandler(void)
+{
+
+	if(__HAL_UART_GET_FLAG(&huart6,UART_FLAG_IDLE) != RESET)
+	{
+		__HAL_UART_CLEAR_IDLEFLAG(&huart6);	
+		HAL_UART_AbortReceive(&huart6);//关闭dma		
+		uint16_t RX6_Length = UART6_RXBUFF_SIZE - __HAL_DMA_GET_COUNTER(&hdma_usart6_rx);//计算数据长度
+
+		//写入队列
+		if(RX6_Length < UART6_RXBUFF_SIZE)
+		{	
+			for(int i = 0; i<RX6_Length; i++)
+			{
+	
+				bufferPush(&Que_JudgeFrame, UART6_RXBUFF[i]);
+			}
+		}
+		HAL_UART_Receive_DMA(&huart6,UART6_RXBUFF,UART6_RXBUFF_SIZE);//重启DMA
+	}
+
+}
 
 
 

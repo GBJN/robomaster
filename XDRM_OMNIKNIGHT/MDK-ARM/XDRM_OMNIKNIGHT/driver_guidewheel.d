@@ -59,7 +59,7 @@ xdrm_omniknight\driver_guidewheel.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4
 xdrm_omniknight\driver_guidewheel.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\math.h
 xdrm_omniknight\driver_guidewheel.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\string.h
 xdrm_omniknight\driver_guidewheel.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\stdlib.h
-xdrm_omniknight\driver_guidewheel.o: ../Inc/tim.h
+xdrm_omniknight\driver_guidewheel.o: ../Inc/BSP_TIM.h
 xdrm_omniknight\driver_guidewheel.o: ../Inc/Driver_Remote.h
 xdrm_omniknight\driver_guidewheel.o: ../Inc/Driver_Beltraise.h
 xdrm_omniknight\driver_guidewheel.o: ../Inc/Driver_Sensor.h

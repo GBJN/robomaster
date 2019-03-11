@@ -59,4 +59,4 @@ xdrm_omniknight\bsp_data.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/e
 xdrm_omniknight\bsp_data.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\math.h
 xdrm_omniknight\bsp_data.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\string.h
 xdrm_omniknight\bsp_data.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\stdlib.h
-xdrm_omniknight\bsp_data.o: ../Inc/can.h
+xdrm_omniknight\bsp_data.o: ../Inc/BSP_CAN.h

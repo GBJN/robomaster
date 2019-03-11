@@ -104,6 +104,10 @@ osThreadId Superviese_TaskHandle;
 
 osMessageQId myQueue01Handle;
 osMutexId myMutex01Handle;
+osMessageQId myQueue01Handle;
+osMutexId myRecursiveMutex01Handle;
+osSemaphoreId myBinarySem01Handle;
+osSemaphoreId myCountingSem01Handle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -122,8 +126,26 @@ void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
   */
 void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
-  osMutexDef(myMutex01);
+   osMutexDef(myMutex01);
   myMutex01Handle = osMutexCreate(osMutex(myMutex01));
+
+  /* Create the recursive mutex(es) */
+  /* definition and creation of myRecursiveMutex01 */
+  osMutexDef(myRecursiveMutex01);
+  myRecursiveMutex01Handle = osRecursiveMutexCreate(osMutex(myRecursiveMutex01));
+
+  /* USER CODE BEGIN RTOS_MUTEX */
+  /* add mutexes, ... */
+  /* USER CODE END RTOS_MUTEX */
+
+  /* Create the semaphores(s) */
+  /* definition and creation of myBinarySem01 */
+  osSemaphoreDef(myBinarySem01);
+  myBinarySem01Handle = osSemaphoreCreate(osSemaphore(myBinarySem01), 1);
+
+  /* definition and creation of myCountingSem01 */
+  osSemaphoreDef(myCountingSem01);
+  myCountingSem01Handle = osSemaphoreCreate(osSemaphore(myCountingSem01), 2);
 
   /* USER CODE END Init */
 

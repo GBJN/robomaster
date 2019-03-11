@@ -60,6 +60,6 @@ xdrm_omniknight\driver_chassis.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_
 xdrm_omniknight\driver_chassis.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\math.h
 xdrm_omniknight\driver_chassis.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\string.h
 xdrm_omniknight\driver_chassis.o: D:\stm32\mdk\ARM\ARMCC\Bin\..\include\stdlib.h
-xdrm_omniknight\driver_chassis.o: ../Inc/PID.h
+xdrm_omniknight\driver_chassis.o: ../Inc/DriverLib_PID.h
 xdrm_omniknight\driver_chassis.o: ../Inc/Driver_Remote.h
 xdrm_omniknight\driver_chassis.o: ../Inc/Driver_Sensor.h
