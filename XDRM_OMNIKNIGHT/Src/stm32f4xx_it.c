@@ -242,6 +242,7 @@ int aaaa = 0;
 
 
 
+
 void USART1_IRQHandler(void)
 {
 	if(__HAL_UART_GET_FLAG(&huart1,UART_FLAG_IDLE)!= RESET)
@@ -261,27 +262,28 @@ void USART1_IRQHandler(void)
 		
 }
 
+//利用串口空闲中断，可以用如下流程实现DMA控制的任意长数据接收：
 
+//0、开启串口DMA接收
+//1、串口收到数据，DMA不断传输数据到存储buf
+//2、一帧数据发送完毕，串口暂时空闲，触发串口空闲中断
+//3、在中断服务函数中，可以计算刚才收到了多少个字节的数据
+//4、解码存储buf，清除标志位，开始下一帧接收
 void USART2_IRQHandler(void)
 {
-	if(__HAL_UART_GET_FLAG(&huart2,UART_FLAG_IDLE) != RESET)
-	{
-		__HAL_UART_CLEAR_IDLEFLAG(&huart2);											
-		HAL_UART_AbortReceive(&huart2);
-		uint16_t RX_Length = UART2_RXBUFF_SIZE - __HAL_DMA_GET_COUNTER(&hdma_usart2_rx);//计算数据长度
-			
-		//写入队列
-		for(int i = 0;i<RX_Length;i++)
-		{
-			bufferPush(&Que_MiniPC, UART2_RXBUFF[i]);
-		}
-	}
-	HAL_UART_Receive_DMA(&huart2,UART2_RXBUFF,40);
-
-	
-  /* USER CODE BEGIN USART2_IRQn 1 */
-
-  /* USER CODE END USART2_IRQn 1 */
+//	if(__HAL_UART_GET_FLAG(&huart2,UART_FLAG_IDLE) != RESET)
+//	{
+//		__HAL_UART_CLEAR_IDLEFLAG(&huart2);											
+//		HAL_UART_AbortReceive(&huart2);
+//		uint16_t RX_Length = UART2_RXBUFF_SIZE - __HAL_DMA_GET_COUNTER(&hdma_usart2_rx);//计算数据长度
+//			
+//		//写入队列
+//		for(int i = 0;i<RX_Length;i++)
+//		{
+//			bufferPush(&Que_MiniPC, UART2_RXBUFF[i]);
+//		}
+//	}
+//	HAL_UART_Receive_DMA(&huart2,UART2_RXBUFF,40);
 }
 
 void USART6_IRQHandler(void)
@@ -291,10 +293,10 @@ void USART6_IRQHandler(void)
 	{
 		__HAL_UART_CLEAR_IDLEFLAG(&huart6);	
 		HAL_UART_AbortReceive(&huart6);//关闭dma		
-		uint16_t RX6_Length = UART6_RXBUFF_SIZE - __HAL_DMA_GET_COUNTER(&hdma_usart6_rx);//计算数据长度
+		uint16_t RX6_Length = UART6_RXBUFF_SIZE - __HAL_DMA_GET_COUNTER(&hdma_usart6_rx);//因为不知道这一帧数据是多长的，所以计算数据长度
 
 		//写入队列
-		if(RX6_Length < UART6_RXBUFF_SIZE)
+		if(RX6_Length < UART6_RXBUFF_SIZE)//根据上面计算的长度把dma传输到内存中的数据转移到队列中去
 		{	
 			for(int i = 0; i<RX6_Length; i++)
 			{

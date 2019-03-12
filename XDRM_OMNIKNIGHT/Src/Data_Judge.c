@@ -1,4 +1,5 @@
 #include "Data_Judge.h"
+#include "BSP_Data.h"
 
 
 
@@ -163,11 +164,34 @@ void Data_Unpack_Judge(void)
 }
 
 
+//FrameHeader(5-Byte)	其中最后一字节为CRC8
+//CmdID(2-Byte) 				
+//Data(n-Byte) 
+//FrameTail(2-Byte)		两字节CRC16
 
 
-void Data_Rc_Judge(void)
+
+void Info_Rc_Judge(void)//这里还要再改
 {
-
+	//数据多于缓冲区阈值
+	while(bufferlen(&Que_JudgeFrame) > 60)
+	{
+		uint8_t frame_temp[JudgeBufferLength];
+		//寻找帧头	
+		if(bufferPop(&Que_JudgeFrame,frame_temp) == 0xA5)//一边找帧头一边把数据去出，直到遇到帧头，就把有意义的数据读到最终变量中
+		{
+            buffer_multiPop(&Que_JudgeFrame, &frame_temp[1], HEADER_LEN - 1);
+            uint8_t data_len = frame_temp[1];
+            if (Verify_CRC8_Check_Sum(frame_temp, HEADER_LEN) == 1 && (5 + data_len + CMD_LEN + CRC_LEN) < JudgeBufferLength)
+            {
+                buffer_multiPop(&Que_JudgeFrame, &frame_temp[5], data_len + CMD_LEN + CRC_LEN);
+                if (Verify_CRC16_Check_Sum(frame_temp, data_len + HEADER_LEN + CMD_LEN + CRC_LEN) == 1)
+                {
+					JudgeReadValue(frame_temp);
+				}
+			}
+		}
+	}
 	
 	
 	
@@ -176,12 +200,43 @@ void Data_Rc_Judge(void)
 
 }
 
-
-
-
-
-void Data_Sd_Judge(void)
+uint8_t InterInfo[120];
+uint8_t InterData_Judge[13];//大疆定义的结构体似乎不太好用，直接定义一个数组，以后可能在包装一下,没仔细看大疆的这个CRC校验，以后在包装
+void Info_Sd_Judge(void)//裁判系统发送的数据就是交互的数据，即一是与客户端交互一是机器人间交互
 {
+	
+
+//最大10hz
+//目前只写了客户端的部分，机器人间交互类似，要定好传输哪些数据以及内容id
+	InterData_Judge[0] = 0xA5;//帧头5字节
+	InterData_Judge[1] = 0x00;//2字节的数据长度，下面是高位,InterLength
+	InterData_Judge[2] = 0x00;
+	InterData_Judge[3] = 0x00;//包序号，不理解
+	Append_CRC8_Check_Sum(InterData_Judge, 5);//加入CRC8
+	
+	InterData_Judge[5] = 0x01;//cmd_id 交互数据为0x301
+	InterData_Judge[6] = 0x03;
+
+	//如果是客户端数据
+	InterData_Judge[7] = 0x80;//数据段内容ID,这是客户端对应的
+	InterData_Judge[8] = 0xD1;
+	InterData_Judge[9] = 0x02;//红色工程的id
+	InterData_Judge[10]= 0x00;	
+	InterData_Judge[11]= 0x02;//红色工程的客户端id，裁判系统只允许把数据发回自己对应的客户端
+	InterData_Judge[12]= 0x01;
+	
+//	InterInfo[]
+	
+	memcpy(&InterData_Judge[13],InterInfo,InfoLength);//感觉以前的处理方法很好
+	
+	
+	
+	
+	
+	Append_CRC16_Check_Sum(InterData_Judge,InfoLength+13+1 );//总共的数据有多少就是多少
+
+	HAL_UART_Transmit_DMA(&huart6,InterData_Judge, InfoLength+13+1 );//22字节
+
 
 
 

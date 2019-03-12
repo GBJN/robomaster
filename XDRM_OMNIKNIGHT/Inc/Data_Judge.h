@@ -27,7 +27,12 @@
 
 
 
-
+typedef __packed struct{
+	uint8_t		 start_byte;
+	uint16_t  data_length;
+	uint8_t       seq_num;
+	uint8_t          crc8;
+}frame_header_t;
 
 
 
@@ -137,8 +142,8 @@ typedef __packed struct {
 
 typedef __packed struct { 
 	uint16_t data_cmd_id; //数据段的内容ID
-	uint16_t send_ID; 		//发送者ID
-	uint16_t receiver_ID;	//接收者ID
+	uint16_t send_id; 		//发送者ID
+	uint16_t receiver_id;	//接收者ID
 }ext_student_interactive_header_data_t;
 //交互数据接收信息：0x0301。发送频率：上限10Hz
 
@@ -206,6 +211,7 @@ typedef enum
 
 typedef struct
 {
+	frame_header_t 											 			Frameheader;
 	ext_student_interactive_header_data_t	InterDataHeader;
 	client_custom_data_t											 ClientData;
 	robot_interactive_data_t										InterData;
